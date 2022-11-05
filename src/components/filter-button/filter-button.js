@@ -1,6 +1,11 @@
-const FilterButton = ({ label, name, onFilterClick, clazz }) => {
+const FilterButton = ({ label, name, onFilterClick, className }) => {
   return (
-    <button type="button" name={name} className={clazz} onClick={onFilterClick}>
+    <button
+      type="button"
+      name={name}
+      className={className}
+      onClick={onFilterClick}
+    >
       {label}
     </button>
   );

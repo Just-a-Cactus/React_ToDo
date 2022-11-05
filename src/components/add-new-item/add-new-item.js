@@ -20,12 +20,12 @@ export default class AddNewItem extends Component {
   render() {
     const { prepareToAddNewItem, addNewItem, isHidden } = this.props;
 
-    let clazz = "";
-    clazz += isHidden ? " hidden" : "";
+    let className = "";
+    className += isHidden ? " hidden" : "";
 
     return (
       <form
-        className="AddNewItem"
+        className="add-new-item"
         onKeyDown={this.onCancelPress}
         onSubmit={(e) => {
           e.preventDefault();
@@ -35,7 +35,7 @@ export default class AddNewItem extends Component {
           });
         }}
       >
-        <label className={clazz} onClick={prepareToAddNewItem}>
+        <label className={className} onClick={prepareToAddNewItem}>
           + Add new item
         </label>
         <input

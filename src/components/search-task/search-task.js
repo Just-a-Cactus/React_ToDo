@@ -1,7 +1,7 @@
 const SearchTask = ({ onSearch, onCancelPress, search }) => {
   if (search) {
     return (
-      <div className="SearchTask">
+      <div className="search-task">
         <input
           type="text"
           name="search"
@@ -16,7 +16,7 @@ const SearchTask = ({ onSearch, onCancelPress, search }) => {
           height="16"
           fill="currentColor"
           viewBox="0 0 16 16"
-          className={"deleteButton"}
+          className={"delete-button"}
           onClick={onSearch}
         >
           <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z" />
@@ -26,9 +26,8 @@ const SearchTask = ({ onSearch, onCancelPress, search }) => {
     );
   } else {
     return (
-      <div className="SearchTask">
+      <div className="search-task">
         <input
-          className="SearchTask"
           type="text"
           name="search"
           id="search"

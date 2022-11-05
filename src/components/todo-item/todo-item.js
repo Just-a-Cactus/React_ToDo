@@ -1,6 +1,6 @@
-const TodoItem = ({ label, clazz, makeDone, isDone, onDelete }) => {
+const TodoItem = ({ label, className, makeDone, isDone, onDelete }) => {
   return (
-    <li className={clazz}>
+    <li className={className}>
       <span>
         <input
           type="checkbox"

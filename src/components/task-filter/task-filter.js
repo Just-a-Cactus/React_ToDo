@@ -4,8 +4,8 @@ const TaskFilter = ({ onFilterClick, buttons }) => {
   let key = 1;
 
   const buttonList = buttons.map((button) => {
-    let clazz = "FilterButton";
-    if (button.active) clazz += " active";
+    let className = "filter-button";
+    if (button.active) className += " active";
 
     return (
       <FilterButton
@@ -13,10 +13,10 @@ const TaskFilter = ({ onFilterClick, buttons }) => {
         name={button.name}
         key={key++}
         onFilterClick={onFilterClick}
-        clazz={clazz}
+        className={className}
       />
     );
   });
-  return <div className="TaskFilter">{buttonList}</div>;
+  return <div className="task-filter">{buttonList}</div>;
 };
 export default TaskFilter;

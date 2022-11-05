@@ -2,7 +2,7 @@ import "./theme-switcher.css";
 
 const ThemeSwitcher = ({ toggleTheme, theme }) => {
   return (
-    <div className={"ThemeSwitcher"}>
+    <div className={"theme-switcher"}>
       <input
         type="checkbox"
         id="day-night"
