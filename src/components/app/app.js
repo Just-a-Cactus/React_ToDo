@@ -12,13 +12,7 @@ import SearchTask from "../search-task/search-task";
 
 export default class App extends Component {
   state = {
-    tasks: [
-      this.createItem("Look at React", true),
-      this.createItem("Start to learning...", true),
-      this.createItem("Make first app", true),
-      this.createItem("Find a job", false),
-      this.createItem("Become a better everyday", false),
-    ],
+    tasks: [],
     buttons: [
       { name: "all", label: "All", active: true },
       { name: "active", label: "Active", active: false },
