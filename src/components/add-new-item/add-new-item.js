@@ -5,20 +5,19 @@ export default class AddNewItem extends Component {
     newTask: "",
   };
 
-  onChange = (e) => {
+  handleNewItemChange = (e) => {
     this.setState({
       newTask: e.target.value,
     });
   };
 
-  onCancelPress = (e) => {
+  handleKeyPress = (e) => {
     if (e.code === "Escape") this.setState({ newTask: "" });
-    const { onCancelPress } = this.props;
-    onCancelPress(e);
+    this.props.onCancelPress(e);
   };
 
   render() {
-    const { prepareToAddNewItem, addNewItem, isHidden } = this.props;
+    const { onNewItemClick, onNewItemAdd, isHidden } = this.props;
 
     let clazz = "";
     clazz += isHidden ? " hidden" : "";
@@ -26,22 +25,22 @@ export default class AddNewItem extends Component {
     return (
       <form
         className="AddNewItem"
-        onKeyDown={this.onCancelPress}
+        onKeyDown={this.handleKeyPress}
         onSubmit={(e) => {
           e.preventDefault();
-          addNewItem(this.state.newTask);
+          onNewItemAdd(this.state.newTask);
           this.setState({
             newTask: "",
           });
         }}
       >
-        <label className={clazz} onClick={prepareToAddNewItem}>
+        <label className={clazz} onClick={onNewItemClick}>
           + Add new item
         </label>
         <input
           type="text"
           placeholder="Add new item"
-          onChange={this.onChange}
+          onChange={this.handleNewItemChange}
           value={this.state.newTask}
         />
       </form>

@@ -1,6 +1,6 @@
 import TodoItem from "../todo-item/todo-item";
 
-const TodoList = ({ tasks, isActive, makeDone, search, onDelete }) => {
+const TodoList = ({ tasks, isActive, onTaskClick, search, onDeleteClick }) => {
   let key = 100;
   let tasksList = "";
 
@@ -13,9 +13,9 @@ const TodoList = ({ tasks, isActive, makeDone, search, onDelete }) => {
           label={item.label}
           clazz={clazz}
           key={key++}
-          makeDone={makeDone}
+          onTaskClick={onTaskClick}
           isDone={item.done}
-          onDelete={onDelete}
+          onDeleteClick={onDeleteClick}
         />
       );
     });

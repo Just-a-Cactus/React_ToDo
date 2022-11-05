@@ -13,11 +13,11 @@ import SearchTask from "../search-task/search-task";
 export default class App extends Component {
   state = {
     tasks: [
-      this.createItem("Look at React", true),
-      this.createItem("Start to learning...", true),
-      this.createItem("Make first app", true),
-      this.createItem("Find a job", false),
-      this.createItem("Become a better everyday", false),
+      this.createNewItem("Look at React", true),
+      this.createNewItem("Start to learning...", true),
+      this.createNewItem("Make first app", true),
+      this.createNewItem("Find a job", false),
+      this.createNewItem("Become a better everyday", false),
     ],
     buttons: [
       { name: "all", label: "All", active: true },
@@ -31,13 +31,13 @@ export default class App extends Component {
     theme: "dark",
   };
 
-  prepareToAddNewItem = () => {
+  handleNewItemClick = () => {
     this.setState({
       isHidden: true,
     });
   };
 
-  addNewItem = (label) => {
+  handleNewItemAdd = (label) => {
     this.setState({
       isHidden: false,
     });
@@ -45,7 +45,7 @@ export default class App extends Component {
   };
 
   addNewTask(label) {
-    const newItem = this.createItem(label);
+    const newItem = this.createNewItem(label);
     const newState = [...this.state.tasks];
 
     this.setState({
@@ -55,22 +55,22 @@ export default class App extends Component {
     localStorage.setItem("tasks", JSON.stringify([...newState, newItem]));
   }
 
-  createItem(label, done = false) {
+  createNewItem(label, done = false) {
     return {
       label,
       done,
     };
   }
 
-  loadItems() {
+  handleLocalstorageLoad() {
     const temp = JSON.parse(localStorage.getItem("tasks"));
     const newState = temp.map((e) => {
-      return this.createItem(e.label, e.done);
+      return this.createNewItem(e.label, e.done);
     });
     this.setState({ tasks: [...newState] });
   }
 
-  makeDone = (e) => {
+  handleTaskClick = (e) => {
     const newState = [...this.state.tasks];
 
     newState.map((el) => {
@@ -84,7 +84,7 @@ export default class App extends Component {
     localStorage.setItem("tasks", JSON.stringify([...newState]));
   };
 
-  onFilterClick = (e) => {
+  handleFilterClick = (e) => {
     const newState = [...this.state.buttons];
 
     newState.map((el) => {
@@ -99,7 +99,7 @@ export default class App extends Component {
     this.setState({ buttons: [...newState] });
   };
 
-  onSearch = (e) => {
+  handleSearchChange = (e) => {
     const newState = [...this.state.buttons];
     const search =
       e.target.name === "search"
@@ -118,7 +118,7 @@ export default class App extends Component {
     this.setState({ search, buttons: [...newState] });
   };
 
-  onCancelPress = (e) => {
+  handleCancelPress = (e) => {
     switch (e.target.name) {
       case "search":
         if (e.code === "Escape") this.setState({ search: "" });
@@ -129,7 +129,7 @@ export default class App extends Component {
     }
   };
 
-  onDelete = (e) => {
+  handleDeleteClick = (e) => {
     const newState = [...this.state.tasks].filter(
       (el) => el.label !== e.currentTarget.getAttribute("data-name")
     );
@@ -141,9 +141,9 @@ export default class App extends Component {
     localStorage.setItem("tasks", JSON.stringify([...newState]));
   };
 
-  setupNewUser() {
+  handleNewUser() {
     localStorage.getItem("tasks")
-      ? this.loadItems()
+      ? this.handleLocalstorageLoad()
       : localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
 
     this.setState({
@@ -151,7 +151,7 @@ export default class App extends Component {
     });
   }
 
-  toggleTheme = () => {
+  handleToggleThemeClick = () => {
     if (this.state.theme === "light") {
       this.setState({
         theme: "dark",
@@ -165,7 +165,7 @@ export default class App extends Component {
 
   componentDidMount() {
     if (this.state.firstLoad) {
-      this.setupNewUser();
+      this.handleNewUser();
     }
   }
 
@@ -179,31 +179,31 @@ export default class App extends Component {
           <Header
             need={this.state.tasks.filter((e) => e.done).length}
             all={this.state.tasks.length}
-            toggleTheme={this.toggleTheme}
+            onToggleThemeClick={this.handleToggleThemeClick}
             theme={this.state.theme}
           />
           <SearchTask
-            onSearch={this.onSearch}
+            onSearchChange={this.handleSearchChange}
             search={this.state.search}
-            onCancelPress={this.onCancelPress}
+            onCancelPress={this.handleCancelPress}
           />
           <TaskFilter
-            onFilterClick={this.onFilterClick}
+            onFilterClick={this.handleFilterClick}
             buttons={this.state.buttons}
           />
           <TodoList
             tasks={this.state.tasks}
             search={this.state.search}
-            makeDone={this.makeDone}
+            onTaskClick={this.handleTaskClick}
             isActive={this.state.isActive}
-            onDelete={this.onDelete}
+            onDeleteClick={this.handleDeleteClick}
           />
           <AddNewItem
-            prepareToAddNewItem={this.prepareToAddNewItem}
-            addNewItem={this.addNewItem}
+            onNewItemClick={this.handleNewItemClick}
+            onNewItemAdd={this.handleNewItemAdd}
             isHidden={this.state.isHidden}
-            isFocused={this.state.isFocused}
-            onCancelPress={this.onCancelPress}
+            // isFocused={this.state.isFocused}
+            onCancelPress={this.handleCancelPress}
           />
         </div>
       </ThemeProvider>

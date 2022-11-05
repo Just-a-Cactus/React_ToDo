@@ -1,6 +1,6 @@
 import "./theme-switcher.css";
 
-const ThemeSwitcher = ({ toggleTheme, theme }) => {
+const ThemeSwitcher = ({ onToggleThemeClick, theme }) => {
   return (
     <div className={"ThemeSwitcher"}>
       <input
@@ -9,7 +9,7 @@ const ThemeSwitcher = ({ toggleTheme, theme }) => {
         checked={theme === "light"}
         readOnly
       />
-      <label htmlFor="day-night" onClick={toggleTheme}>
+      <label htmlFor="day-night" onClick={onToggleThemeClick}>
         <div className="celestial sun"></div>
         <div className="celestial moon">
           <div className="craters">
