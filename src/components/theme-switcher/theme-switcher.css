@@ -1,9 +1,9 @@
-.theme-switcher {
+.themeSwitcher {
   display: flex;
   justify-content: flex-end;
 }
 
-.theme-switcher label {
+.themeSwitcher label {
   --size: 70px;
   --height: calc(var(--size) / 2);
   --padding: calc(var(--size) * 0.04);
@@ -27,7 +27,7 @@
   overflow: hidden;
 }
 
-.theme-switcher .celestial {
+.themeSwitcher .celestial {
   transition: all var(--transition-duration) ease-in-out;
   width: var(--switch-size);
   height: var(--switch-size);
@@ -37,17 +37,17 @@
   border-radius: var(--height);
 }
 
-.theme-switcher .sun {
+.themeSwitcher .sun {
   background-color: #fdc82e;
   border-color: #e3ad0d;
 }
 
-.theme-switcher .moon {
+.themeSwitcher .moon {
   background-color: #d2cec4;
   border-color: #a9a18f;
 }
 
-.theme-switcher .crater {
+.themeSwitcher .crater {
   background-color: #d2cec4;
   border-color: #a9a18f;
   border-width: calc(max(var(--border-width) * 0.65, 1px));
@@ -56,54 +56,54 @@
   border-radius: 50%;
 }
 
-.theme-switcher .crater:nth-child(1) {
+.themeSwitcher .crater:nth-child(1) {
   width: calc(var(--switch-size) * 0.15);
   height: calc(var(--switch-size) * 0.15);
   top: calc(var(--switch-size) * 0.7);
   left: calc(var(--switch-size) * 0.4);
 }
 
-.theme-switcher .crater:nth-child(2) {
+.themeSwitcher .crater:nth-child(2) {
   width: calc(var(--switch-size) * 0.3);
   height: calc(var(--switch-size) * 0.3);
   top: calc(var(--switch-size) * 0.1);
   left: calc(var(--switch-size) * -0.05);
 }
 
-.theme-switcher .crater:nth-child(3) {
+.themeSwitcher .crater:nth-child(3) {
   width: calc(var(--switch-size) * 0.1);
   height: calc(var(--switch-size) * 0.1);
   top: calc(var(--switch-size) * 0.2);
   left: calc(var(--switch-size) * 0.6);
 }
 
-.theme-switcher .crater:nth-child(4) {
+.themeSwitcher .crater:nth-child(4) {
   width: calc(var(--switch-size) * 0.1);
   height: calc(var(--switch-size) * 0.1);
   top: calc(var(--switch-size) * 0.3);
   left: calc(var(--switch-size) * 0.25);
 }
 
-.theme-switcher .crater:nth-child(5) {
+.themeSwitcher .crater:nth-child(5) {
   width: calc(var(--switch-size) * 0.2);
   height: calc(var(--switch-size) * 0.2);
   top: calc(var(--switch-size) * 0.5);
   left: calc(var(--switch-size) * 0.8);
 }
 
-.theme-switcher .decoration {
+.themeSwitcher .decoration {
   position: absolute;
   transition: all var(--transition-duration) ease-in-out;
 }
 
-.theme-switcher .mountains {
+.themeSwitcher .mountains {
   position: absolute;
   display: inline-block;
   top: calc(var(--switch-size) * 0.85);
   left: calc(var(--switch-size) * 0.7);
 }
 
-.theme-switcher .mountains > * {
+.themeSwitcher .mountains > * {
   position: absolute;
   display: inline-block;
   border-width: var(--border-width);
@@ -115,54 +115,54 @@
   border-color: black;
 }
 
-.theme-switcher .mountains :first-child {
+.themeSwitcher .mountains :first-child {
   width: calc(var(--switch-size) * 0.9);
   height: calc(var(--switch-size) * 0.9);
   top: calc(var(--switch-size) * 0.1);
 }
 
-.theme-switcher .mountains :last-child {
+.themeSwitcher .mountains :last-child {
   width: calc(var(--switch-size) * 0.45);
   height: calc(var(--switch-size) * 0.45);
   top: calc(var(--switch-size) * 0.2);
   left: calc(var(--switch-size) * 0.6);
 }
 
-.theme-switcher input {
+.themeSwitcher input {
   display: none;
 }
 
-.theme-switcher input:checked + label {
+.themeSwitcher input:checked + label {
   border-color: #3190bf;
   background-color: #6cbde5;
 }
 
-.theme-switcher input:checked + label .celestial.sun {
+.themeSwitcher input:checked + label .celestial.sun {
   transition-delay: var(--transition-duration);
   top: var(--padding);
   left: var(--pos-right);
   transform: scale(1);
 }
 
-.theme-switcher input:checked + label .moon {
+.themeSwitcher input:checked + label .moon {
   transition-delay: 0ms;
   left: var(--pos-left);
   top: var(--shift);
   transform: scale(0);
 }
 
-.theme-switcher input:checked .decorations {
+.themeSwitcher input:checked .decorations {
   opacity: 0.5;
 }
 
-.theme-switcher input:checked + label > .decorations .decoration {
+.themeSwitcher input:checked + label > .decorations .decoration {
   background-color: white;
   border-radius: 50%;
   animation: 4s vibe ease-in-out infinite;
   animation-direction: alternate;
 }
 
-.theme-switcher input:checked + label .decoration:nth-child(1) {
+.themeSwitcher input:checked + label .decoration:nth-child(1) {
   border-radius: calc(var(--switch-size) * 0.3);
   height: calc(var(--switch-size) * 0.3);
   width: calc(var(--switch-size) * 0.84);
@@ -170,7 +170,7 @@
   left: calc(var(--switch-size) * 0.45);
 }
 
-.theme-switcher input:checked + label .decoration:nth-child(2) {
+.themeSwitcher input:checked + label .decoration:nth-child(2) {
   animation-delay: 300ms;
   animation-duration: 2.5s;
   height: calc(var(--switch-size) * 0.35);
@@ -179,7 +179,7 @@
   left: calc(var(--switch-size) * 0.35);
 }
 
-.theme-switcher input:checked + label .decoration:nth-child(3) {
+.themeSwitcher input:checked + label .decoration:nth-child(3) {
   animation-delay: 800ms;
   animation-duration: 3.5s;
   height: calc(var(--switch-size) * 0.3);
@@ -188,7 +188,7 @@
   left: calc(var(--switch-size) * 0.85);
 }
 
-.theme-switcher input:checked + label .decoration:nth-child(4) {
+.themeSwitcher input:checked + label .decoration:nth-child(4) {
   animation-delay: 1400ms;
   animation-duration: 3s;
   height: calc(var(--switch-size) * 0.4);
@@ -197,24 +197,24 @@
   left: calc(var(--switch-size) * 0.55);
 }
 
-.theme-switcher input:checked + label .mountains > * {
+.themeSwitcher input:checked + label .mountains > * {
   background-color: #d4d4d4;
   border-color: #a8a8a8;
 }
 
-.theme-switcher input + label {
+.themeSwitcher input + label {
   border-color: #2a4569;
   background-color: #223349;
 }
 
-.theme-switcher input + label > .celestial.sun {
+.themeSwitcher input + label > .celestial.sun {
   transition-delay: 0ms;
   top: var(--shift);
   left: var(--pos-right);
   transform: scale(0);
 }
 
-.theme-switcher .moon {
+.themeSwitcher .moon {
   transition-delay: var(--transition-duration);
   top: var(--padding);
   left: var(--pos-left);
@@ -222,7 +222,7 @@
   transform: scale(1);
 }
 
-.theme-switcher input + label .decoration {
+.themeSwitcher input + label .decoration {
   background-color: white;
   border-radius: 50%;
   width: calc(max(var(--border-width) * 0.75, 2px));
@@ -231,33 +231,33 @@
   animation-direction: alternate;
 }
 
-.theme-switcher input + label .decoration:nth-child(1) {
+.themeSwitcher input + label .decoration:nth-child(1) {
   top: calc(var(--switch-size) * 0.7);
   left: calc(var(--switch-size) * 1.7);
 }
 
-.theme-switcher input + label .decoration:nth-child(2) {
+.themeSwitcher input + label .decoration:nth-child(2) {
   animation-delay: 300ms;
   animation-duration: 3s;
   top: calc(var(--switch-size) * 0.4);
   left: calc(var(--switch-size) * 1.4);
 }
 
-.theme-switcher input + label .decoration:nth-child(3) {
+.themeSwitcher input + label .decoration:nth-child(3) {
   animation-delay: 800ms;
   animation-duration: 3.5s;
   top: calc(var(--switch-size) * 0.9);
   left: calc(var(--switch-size) * 2.2);
 }
 
-.theme-switcher input + label .decoration:nth-child(4) {
+.themeSwitcher input + label .decoration:nth-child(4) {
   animation-delay: 1400ms;
   animation-duration: 2.5s;
   top: calc(var(--switch-size) * 0.3);
   left: calc(var(--switch-size) * 2);
 }
 
-.theme-switcher input + label > .mountains > * {
+.themeSwitcher input + label > .mountains > * {
   background-color: #878787;
   border-color: #5c5c5c;
 }

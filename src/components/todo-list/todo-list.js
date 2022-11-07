@@ -6,7 +6,7 @@ const TodoList = ({ tasks, isActive, makeDone, search, onDelete }) => {
 
   const makeItem = (arr) => {
     return arr.map((item) => {
-      let className = "todo-item";
+      let className = "todoItem";
       className += item.done ? " done" : "";
       return (
         <TodoItem
@@ -44,7 +44,7 @@ const TodoList = ({ tasks, isActive, makeDone, search, onDelete }) => {
         break;
     }
   }
-  return <ul className="todo-list">{tasksList}</ul>;
+  return <ul className="todoList">{tasksList}</ul>;
 };
 
 export default TodoList;
