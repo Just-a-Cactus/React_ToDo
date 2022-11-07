@@ -1,6 +1,13 @@
 import "./theme-switcher.css";
+import PropTypes from "prop-types";
 
-const ThemeSwitcher = ({ onToggleThemeClick, theme }) => (
+const ThemeSwitcher = ({ onToggleThemeClick, theme }) => {
+  ThemeSwitcher.propTypes = {
+    onToggleThemeClick: PropTypes.func,
+    theme: PropTypes.string,
+  };
+
+return (
   <div className={"themeSwitcher"}>
     <input
       type="checkbox"

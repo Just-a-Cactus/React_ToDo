@@ -1,5 +1,16 @@
-const TodoItem = ({ label, className, onTaskClick, isDone, onDeleteClick }) => (
-  <li className={className}>
+import PropTypes from "prop-types";
+
+const TodoItem = ({ label, className, onTaskClick, isDone, onDeleteClick }) => {
+  TodoItem.propTypes = {
+    label: PropTypes.string,
+    className: PropTypes.string,
+    onTaskClick: PropTypes.func,
+    isDone: PropTypes.bool,
+    onDeleteClick: PropTypes.func,
+  };
+
+  return (
+    <li className={className}>
     <span>
       <input type="checkbox" id={label} onChange={onTaskClick} checked={isDone} />
       <label htmlFor={label}>{label}</label>

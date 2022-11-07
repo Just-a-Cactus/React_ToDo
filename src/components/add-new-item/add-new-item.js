@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 
 const AddNewItem = ({
@@ -42,6 +43,13 @@ const AddNewItem = ({
       />
     </form>
   );
+};
+
+AddNewItem.propTypes = {
+  onCancelPress: PropTypes.func,
+  prepareToAddNewItem: PropTypes.func,
+  addNewItem: PropTypes.func,
+  isHidden: PropTypes.bool,
 };
 
 export default AddNewItem;
