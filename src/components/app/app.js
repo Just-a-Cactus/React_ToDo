@@ -29,41 +29,41 @@ const App = () => {
   const [firstLoad, setFirstLoad] = useState(true);
   const [theme, setTheme] = useState("dark");
 
-  const prepareToAddNewItem = () => {
+  const handleNewItemClick = () => {
     setIsHidden(true);
   };
 
-  const addNewItem = (label) => {
+  const handleNewItemAdd = (label) => {
     setIsHidden(false);
     addNewTask(label);
   };
 
   const addNewTask = (label) => {
-    const newItem = createItem(label);
+    const newItem = createNewItem(label);
     const newState = [...tasks];
-
     setTasks([...newState, newItem]);
-
     localStorage.setItem("tasks", JSON.stringify([...newState, newItem]));
   };
 
-  const createItem = (label, done = false) => {
+  const createNewItem = (label, done = false) => {
     return {
       label,
       done,
     };
   };
 
-  const loadItems = () => {
+
+  const handleLocalstorageLoad = () => {
     const temp = JSON.parse(localStorage.getItem("tasks"));
     const newState = temp.map((e) => {
-      return createItem(e.label, e.done);
+      return createNewItem(e.label, e.done);
     });
     setTasks([...newState]);
   };
 
-  const makeDone = (e) => {
+  const handleTaskClick = (e) => {
     const newState = [...tasks];
+
 
     newState.map((el) => {
       if (el.label === e.target.id) {
@@ -76,7 +76,7 @@ const App = () => {
     localStorage.setItem("tasks", JSON.stringify([...newState]));
   };
 
-  const onFilterClick = (e) => {
+  const handleFilterClick = (e) => {
     const newState = [...buttons];
 
     newState.map((el) => {
@@ -89,9 +89,10 @@ const App = () => {
     setButtons([...newState]);
   };
 
-  const onSearch = (e) => {
+  const handleSearchChange = (e) => {
     const newState = [...buttons];
     const tempSearch =
+
       e.target.name === "search"
         ? e.target.value
         : search.slice(0, search.length - 1);
@@ -106,7 +107,7 @@ const App = () => {
     setButtons([...newState]);
   };
 
-  const onCancelPress = (e) => {
+  const handleCancelPress = (e) => {
     switch (e.target.name) {
       case "search":
         if (e.code === "Escape") setSearch("");
@@ -117,7 +118,7 @@ const App = () => {
     }
   };
 
-  const onDelete = (e) => {
+  const handleDeleteClick = (e) => {
     const newState = [...tasks].filter(
       (el) => el.label !== e.currentTarget.getAttribute("data-name")
     );
@@ -126,14 +127,14 @@ const App = () => {
     localStorage.setItem("tasks", JSON.stringify([...newState]));
   };
 
-  const setupNewUser = () => {
+  const handleNewUser = () => {
     localStorage.getItem("tasks")
       ? loadItems()
       : localStorage.setItem("tasks", JSON.stringify(tasks));
     setFirstLoad(false);
   };
 
-  const toggleTheme = () => {
+  const handleToggleThemeClick = () => {
     if (theme === "light") {
       setTheme("dark");
     } else {
@@ -152,29 +153,29 @@ const App = () => {
       <GlobalStyles />
       <div className="app">
         <Header
-          need={tasks.filter((e) => e.done).length}
-          all={tasks.length}
-          toggleTheme={toggleTheme}
+          amountFinishedTasks={tasks.filter((e) => e.done).length}
+          amountOfAllTasks={tasks.length}
+          onToggleThemeClick={handleToggleThemeClick}
           theme={theme}
         />
         <SearchTask
-          onSearch={onSearch}
+          onSearchChange={handleSearchChange}
           search={search}
-          onCancelPress={onCancelPress}
+          onCancelPress={handleCancelPress}
         />
-        <TaskFilter onFilterClick={onFilterClick} buttons={buttons} />
+        <TaskFilter onFilterClick={handleFilterClick} buttons={buttons} />
         <TodoList
           tasks={tasks}
           search={search}
-          makeDone={makeDone}
+          onTaskClick={handleTaskClick}
           isActive={isActive}
-          onDelete={onDelete}
+          onDeleteClick={handleDeleteClick}
         />
         <AddNewItem
-          prepareToAddNewItem={prepareToAddNewItem}
-          addNewItem={addNewItem}
+          onNewItemClick={handleNewItemClick}
+          onNewItemAdd={handleNewItemAdd}
           isHidden={isHidden}
-          onCancelPress={onCancelPress}
+          onCancelPress={handleCancelPress}
         />
       </div>
     </ThemeProvider>

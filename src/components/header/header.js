@@ -1,11 +1,11 @@
 import ThemeSwitcher from "../theme-switcher/theme-switcher";
 
-const Header = ({ need, all, toggleTheme, theme }) => (
+const Header = ({ amountFinishedTasks, amountOfAllTasks, onToggleThemeClick, theme }) => (
   <header className="Header">
-    <ThemeSwitcher toggleTheme={toggleTheme} theme={theme} />
+    <ThemeSwitcher toggleTheme={onToggleThemeClick} theme={theme} />
     <h1>Things to do</h1>
     <span>
-      {need} from {all} done
+      {amountFinishedTasks} from {amountOfAllTasks} done
     </span>
   </header>
 );

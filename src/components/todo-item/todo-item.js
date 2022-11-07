@@ -1,7 +1,7 @@
-const TodoItem = ({ label, clazz, makeDone, isDone, onDelete }) => (
+const TodoItem = ({ label, clazz, onTaskClick, isDone, onDeleteClick }) => (
   <li className={clazz}>
     <span>
-      <input type="checkbox" id={label} onChange={makeDone} checked={isDone} />
+      <input type="checkbox" id={label} onChange={onTaskClick} checked={isDone} />
       <label htmlFor={label}>{label}</label>
     </span>
     <svg
@@ -11,7 +11,7 @@ const TodoItem = ({ label, clazz, makeDone, isDone, onDelete }) => (
       height="20"
       fill="currentColor"
       viewBox="0 0 20 20"
-      onClick={onDelete}
+      onClick={onDeleteClick}
       data-name={label}
     >
       <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />

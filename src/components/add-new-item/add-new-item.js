@@ -8,11 +8,11 @@ const AddNewItem = ({
 }) => {
   const [newTask, setNewTask] = useState("");
 
-  const onChange = (e) => {
+  const handleNewItemChange = (e) => {
     setNewTask(e.target.value);
   };
 
-  const onPress = (e) => {
+  const handleKeyPress = (e) => {
     if (e.code === "Escape") setNewTask("");
     onCancelPress(e);
   };
