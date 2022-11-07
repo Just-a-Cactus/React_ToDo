@@ -1,3 +1,4 @@
+
 import PropTypes from "prop-types";
 
 const FilterButton = ({ label, name, onFilterClick, clazz }) => {
@@ -5,13 +6,13 @@ const FilterButton = ({ label, name, onFilterClick, clazz }) => {
     label: PropTypes.string,
     name: PropTypes.string,
     onFilterClick: PropTypes.func,
-    clazz: PropTypes.string,
+    className: PropTypes.string,
   };
 
-  return (
-    <button type="button" name={name} className={clazz} onClick={onFilterClick}>
-      {label}
-    </button>
-  );
-};
+const FilterButton = ({ label, name, onFilterClick, className }) => (
+  <button type="button" name={name} className={className} onClick={onFilterClick}>
+    {label}
+  </button>
+);
+
 export default FilterButton;

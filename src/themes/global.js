@@ -17,16 +17,16 @@ export const GlobalStyles = createGlobalStyle`
       background-color: transparent;
    }
    
-   //add-new-item
-   .AddNewItem label.hidden ~ input {
+   //addNewItem
+   .addNewItem label.hidden ~ input {
       display: block;
    }
 
-   .AddNewItem label.hidden {
+   .addNewItem label.hidden {
       display: none;
    }
 
-   .AddNewItem input {
+   .addNewItem input {
       display: none;
       width: 100%;
       background-color: ${({ theme }) => theme.inputColor};
@@ -38,18 +38,18 @@ export const GlobalStyles = createGlobalStyle`
       font-size: 18px;
    }
 
-   .AddNewItem input:focus {
+   .addNewItem input:focus {
       outline: none;
    }
 
-   .AddNewItem label {
+   .addNewItem label {
       font-size: 18px;
       color: ${({ theme }) => theme.inputTextColor};
       display: flex;
       justify-content: center;
    }
 
-   .AddNewItem label:hover {
+   .addNewItem label:hover {
       color: inherit;
       cursor: pointer;
    }
@@ -68,8 +68,8 @@ export const GlobalStyles = createGlobalStyle`
    }
    
    
-   //filter-button
-   .FilterButton {
+   //filterButton
+   .filterButton {
       border-radius: 10px;
       border-color: transparent;
       background-color: ${({ theme }) => theme.inputColor};
@@ -78,40 +78,40 @@ export const GlobalStyles = createGlobalStyle`
       font-size: 20px;
    }  
    
-   .FilterButton + .FilterButton {
+   .filterButton + .filterButton {
       margin-left: 10px;
    }  
    
-   .FilterButton:hover {
+   .filterButton:hover {
       background-color: ${({ theme }) => theme.color};
       color: ${({ theme }) => theme.inputColor};
    }  
    
-   .FilterButton.active {
+   .filterButton.active {
       background-color: ${({ theme }) => theme.color};
       color: ${({ theme }) => theme.inputColor};
    }
    
    
-   //search-task
-   .SearchTask {
+   //searchTask
+   .searchTask {
       position: relative;
    }
 
-   .SearchTask .deleteButton {
+   .searchTask .deleteButton {
       position: absolute;
       right: 10px;
       top: 6px;
    }
 
    @media (hover: hover) {
-      .SearchTask .deleteButton:hover {
+      .searchTask .deleteButton:hover {
          cursor: pointer;
          color: ${({ theme }) => theme.accentColor};
       }
    }
 
-   .SearchTask input {
+   .searchTask input {
       width: 100%;
       background-color: ${({ theme }) => theme.inputColor};
       color: inherit;
@@ -124,12 +124,12 @@ export const GlobalStyles = createGlobalStyle`
       padding-left: 30px;
    }
 
-   .SearchTask input:focus {
+   .searchTask input:focus {
       outline: none;
    }
    
    //tasks-filter
-   .TaskFilter {
+   .taskFilter {
       display: flex;
       justify-content: center;
       border-bottom: 1px ${({ theme }) => theme.borderColor};
@@ -137,13 +137,13 @@ export const GlobalStyles = createGlobalStyle`
       padding-bottom: 10px;
    }
 
-   .TaskFilter.active {
+   .taskFilter.active {
       background-color: ${({ theme }) => theme.accentColor};
    }
    
-   //todo-item
+   //todoItem
    
-   .TodoItem {
+   .todoItem {
       display: flex;
       align-items: center;
       margin-bottom: 10px;
@@ -151,44 +151,44 @@ export const GlobalStyles = createGlobalStyle`
    }  
    
    @media (hover: hover) {  
-      .TodoItem:hover {
+      .todoItem:hover {
          border-bottom: 1px solid ${({ theme }) => theme.borderColor};
       }  
    }  
    
-   .TodoItem.done {
+   .todoItem.done {
       color: ${({ theme }) => theme.inputTextColor};
       text-decoration: line-through;
    }  
    
-   .TodoItem .trash {
+   .todoItem .trash {
       color: ${({ theme }) => theme.color};
       min-width: 20px;
    }  
    
    @media (hover: hover) {  
-      .TodoItem .trash:hover {
+      .todoItem .trash:hover {
          cursor: pointer;
          color: ${({ theme }) => theme.accentColor};
       }  
    }  
    
-   .TodoItem :first-child {
+   .todoItem :first-child {
       flex-grow: 1;
    }  
    
-   .TodoItem input[type="checkbox"] {
+   .todoItem input[type="checkbox"] {
       display: none;
    }  
    
-   .TodoItem input[type="checkbox"] + label {
+   .todoItem input[type="checkbox"] + label {
       display: block;
       position: relative;
       padding-left: 30px;
       cursor: pointer;
    }  
    
-   .TodoItem input[type="checkbox"] + label:before {
+   .todoItem input[type="checkbox"] + label:before {
       content: "";
       display: block;
       width: 16px;
@@ -201,7 +201,7 @@ export const GlobalStyles = createGlobalStyle`
       transition: all 0.12s, border-color 0.08s;
    }  
    
-   .TodoItem input[type="checkbox"]:checked + label:before {
+   .todoItem input[type="checkbox"]:checked + label:before {
       width: 5px;
       top: 0;
       left: 7px;
@@ -213,7 +213,7 @@ export const GlobalStyles = createGlobalStyle`
    }
    
    //todo-list
-   .TodoList {
+   .todoList {
       list-style: none;
       margin: 0;
       padding: 0;
@@ -221,16 +221,16 @@ export const GlobalStyles = createGlobalStyle`
    
    
    //header
-   .Header {
+   .header {
      text-align: center;
      padding-bottom: 10px;
    }
 
-   .Header h1 {
+   .header h1 {
      margin: 0 0 5px 0;
      font-size: 36px;
    }
-   .Header span {
+   .header span {
      color: ${({ theme }) => theme.inputTextColor};
    }   
 `;

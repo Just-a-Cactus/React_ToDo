@@ -1,13 +1,13 @@
 import TodoItem from "../todo-item/todo-item";
 import PropTypes from "prop-types";
 
-const TodoList = ({ tasks, filterStatus, makeDone, search, onDelete }) => {
+const TodoList = ({ tasks, filterStatus, onTaskClick, search, onDeleteClick }) => {
   TodoList.propTypes = {
     tasks: PropTypes.array,
     filterStatus: PropTypes.string,
-    makeDone: PropTypes.func,
+    onTaskClick: PropTypes.func,
     search: PropTypes.string,
-    onDelete: PropTypes.func,
+    onDeleteClick: PropTypes.func,
   };
 
   let key = 100;
@@ -15,16 +15,16 @@ const TodoList = ({ tasks, filterStatus, makeDone, search, onDelete }) => {
 
   const makeItem = (arr) => {
     return arr.map((item) => {
-      let clazz = "TodoItem";
-      clazz += item.done ? " done" : "";
+      let className = "todoItem";
+      className += item.done ? " done" : "";
       return (
         <TodoItem
           label={item.label}
-          clazz={clazz}
+          className={className}
           key={key++}
-          makeDone={makeDone}
+          onTaskClick={onTaskClick}
           isDone={item.done}
-          onDelete={onDelete}
+          onDeleteClick={onDeleteClick}
         />
       );
     });
@@ -35,11 +35,7 @@ const TodoList = ({ tasks, filterStatus, makeDone, search, onDelete }) => {
   };
 
   if (search) {
-    tasksList = makeItem(
-      tasks.filter((el) => {
-        return filterElement(el);
-      })
-    );
+    tasksList = makeItem(tasks.filter((el) => filterElement(el)));
   } else {
     switch (filterStatus) {
       case "done":
@@ -53,7 +49,7 @@ const TodoList = ({ tasks, filterStatus, makeDone, search, onDelete }) => {
         break;
     }
   }
-  return <ul className="TodoList">{tasksList}</ul>;
+  return <ul className="todoList">{tasksList}</ul>;
 };
 
 export default TodoList;

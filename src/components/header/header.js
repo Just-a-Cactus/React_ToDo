@@ -1,22 +1,22 @@
 import ThemeSwitcher from "../theme-switcher/theme-switcher";
 import PropTypes from "prop-types";
 
-const Header = ({ need, all, toggleTheme, theme }) => {
+const Header = ({ amountFinishedTasks, amountOfAllTasks, toggleTheme, theme }) => {
   Header.propTypes = {
-    need: PropTypes.number,
-    all: PropTypes.number,
-    toggleTheme: PropTypes.func,
+    amountFinishedTasks: PropTypes.number,
+    amountOfAllTasks: PropTypes.number,
+    onToggleThemeClick: PropTypes.func,
     theme: PropTypes.string,
   };
 
   return (
-    <header className="Header">
-      <ThemeSwitcher toggleTheme={toggleTheme} theme={theme} />
-      <h1>Things to do</h1>
-      <span>
-        {need} from {all} done
-      </span>
-    </header>
-  );
-};
+  <header className="header">
+    <ThemeSwitcher toggleTheme={onToggleThemeClick} theme={theme} />
+    <h1>Things to do</h1>
+    <span>
+      {amountFinishedTasks} from {amountOfAllTasks} done
+    </span>
+  </header>
+);
+
 export default Header;
