@@ -26,11 +26,7 @@ const TodoList = ({ tasks, isActive, onTaskClick, search, onDeleteClick }) => {
   };
 
   if (search) {
-    tasksList = makeItem(
-      tasks.filter((el) => {
-        return filterElement(el);
-      })
-    );
+    tasksList = makeItem(tasks.filter((el) => filterElement(el)));
   } else {
     switch (isActive) {
       case "done":

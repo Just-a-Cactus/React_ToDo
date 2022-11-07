@@ -1,49 +1,46 @@
-import { Component } from "react";
+import { useState } from "react";
 
-export default class AddNewItem extends Component {
-  state = {
-    newTask: "",
+const AddNewItem = ({
+  prepareToAddNewItem,
+  addNewItem,
+  isHidden,
+  onCancelPress,
+}) => {
+  const [newTask, setNewTask] = useState("");
+
+  const handleNewItemChange = (e) => {
+    setNewTask(e.target.value);
   };
 
-  handleNewItemChange = (e) => {
-    this.setState({
-      newTask: e.target.value,
-    });
+  const handleKeyPress = (e) => {
+    if (e.code === "Escape") setNewTask("");
+    onCancelPress(e);
   };
 
-  handleKeyPress = (e) => {
-    if (e.code === "Escape") this.setState({ newTask: "" });
-    this.props.onCancelPress(e);
-  };
+  let clazz = "";
+  clazz += isHidden ? " hidden" : "";
 
-  render() {
-    const { onNewItemClick, onNewItemAdd, isHidden } = this.props;
+  return (
+    <form
+      className="AddNewItem"
+      onKeyDown={onPress}
+      onSubmit={(e) => {
+        e.preventDefault();
+        addNewItem(newTask);
+        setNewTask("");
+      }}
+    >
+      <label className={clazz} onClick={prepareToAddNewItem}>
+        + Add new item
+      </label>
+      <input
+        type="text"
+        placeholder="Add new item"
+        onChange={onChange}
+        value={newTask}
+      />
+    </form>
+  );
+};
 
-    let clazz = "";
-    clazz += isHidden ? " hidden" : "";
-
-    return (
-      <form
-        className="AddNewItem"
-        onKeyDown={this.handleKeyPress}
-        onSubmit={(e) => {
-          e.preventDefault();
-          onNewItemAdd(this.state.newTask);
-          this.setState({
-            newTask: "",
-          });
-        }}
-      >
-        <label className={clazz} onClick={onNewItemClick}>
-          + Add new item
-        </label>
-        <input
-          type="text"
-          placeholder="Add new item"
-          onChange={this.handleNewItemChange}
-          value={this.state.newTask}
-        />
-      </form>
-    );
-  }
-}
+export default AddNewItem;
