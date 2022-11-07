@@ -25,7 +25,7 @@ export default class AddNewItem extends Component {
 
     return (
       <form
-        className="add-new-item"
+        className="addNewItem"
         onKeyDown={this.onCancelPress}
         onSubmit={(e) => {
           e.preventDefault();
