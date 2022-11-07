@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class AddNewItem extends Component {
   state = {
@@ -48,3 +49,10 @@ export default class AddNewItem extends Component {
     );
   }
 }
+
+AddNewItem.propTypes = {
+  onCancelPress: PropTypes.func,
+  prepareToAddNewItem: PropTypes.func,
+  addNewItem: PropTypes.func,
+  isHidden: PropTypes.bool,
+};

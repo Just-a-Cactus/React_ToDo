@@ -1,6 +1,12 @@
 import FilterButton from "../filter-button/filter-button";
+import PropTypes from "prop-types";
 
 const TaskFilter = ({ onFilterClick, buttons }) => {
+  TaskFilter.propTypes = {
+    onFilterClick: PropTypes.func,
+    buttons: PropTypes.array,
+  };
+
   let key = 1;
 
   const buttonList = buttons.map((button) => {

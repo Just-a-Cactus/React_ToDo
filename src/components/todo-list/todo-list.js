@@ -1,6 +1,15 @@
 import TodoItem from "../todo-item/todo-item";
+import PropTypes from "prop-types";
 
-const TodoList = ({ tasks, isActive, makeDone, search, onDelete }) => {
+const TodoList = ({ tasks, filterStatus, makeDone, search, onDelete }) => {
+  TodoList.propTypes = {
+    tasks: PropTypes.array,
+    filterStatus: PropTypes.string,
+    makeDone: PropTypes.func,
+    search: PropTypes.string,
+    onDelete: PropTypes.func,
+  };
+
   let key = 100;
   let tasksList = "";
 
@@ -32,7 +41,7 @@ const TodoList = ({ tasks, isActive, makeDone, search, onDelete }) => {
       })
     );
   } else {
-    switch (isActive) {
+    switch (filterStatus) {
       case "done":
         tasksList = makeItem(tasks.filter((el) => el.done));
         break;

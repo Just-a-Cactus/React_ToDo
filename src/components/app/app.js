@@ -25,7 +25,7 @@ export default class App extends Component {
       { name: "done", label: "Done", active: false },
     ],
     isHidden: false,
-    isActive: "",
+    filterStatus: "",
     search: "",
     firstLoad: true,
     theme: "dark",
@@ -90,7 +90,7 @@ export default class App extends Component {
     newState.map((el) => {
       if (el.name === e.target.name) {
         this.setState({
-          isActive: el.name,
+          filterStatus: el.name,
         });
         return (el.active = true);
       } else return (el.active = false);
@@ -109,7 +109,7 @@ export default class App extends Component {
     newState.map((el) => {
       if (el.name === "all") {
         this.setState({
-          isActive: el.name,
+          filterStatus: el.name,
         });
         return (el.active = true);
       } else return (el.active = false);
@@ -195,7 +195,7 @@ export default class App extends Component {
             tasks={this.state.tasks}
             search={this.state.search}
             makeDone={this.makeDone}
-            isActive={this.state.isActive}
+            filterStatus={this.state.filterStatus}
             onDelete={this.onDelete}
           />
           <AddNewItem

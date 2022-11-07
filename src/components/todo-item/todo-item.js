@@ -1,4 +1,14 @@
+import PropTypes from "prop-types";
+
 const TodoItem = ({ label, clazz, makeDone, isDone, onDelete }) => {
+  TodoItem.propTypes = {
+    label: PropTypes.string,
+    clazz: PropTypes.string,
+    makeDone: PropTypes.func,
+    isDone: PropTypes.bool,
+    onDelete: PropTypes.func,
+  };
+
   return (
     <li className={clazz}>
       <span>

@@ -1,6 +1,12 @@
 import "./theme-switcher.css";
+import PropTypes from "prop-types";
 
 const ThemeSwitcher = ({ toggleTheme, theme }) => {
+  ThemeSwitcher.propTypes = {
+    toggleTheme: PropTypes.func,
+    theme: PropTypes.string,
+  };
+
   return (
     <div className={"ThemeSwitcher"}>
       <input

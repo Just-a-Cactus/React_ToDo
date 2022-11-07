@@ -1,4 +1,12 @@
+import PropTypes from "prop-types";
+
 const SearchTask = ({ onSearch, onCancelPress, search }) => {
+  SearchTask.propTypes = {
+    onSearch: PropTypes.func,
+    onCancelPress: PropTypes.func,
+    search: PropTypes.string,
+  };
+
   if (search) {
     return (
       <div className="SearchTask">
