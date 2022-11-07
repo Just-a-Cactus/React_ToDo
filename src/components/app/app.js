@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { useEffect, useState } from "react";
 
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../themes/theme";
@@ -10,68 +10,60 @@ import TaskFilter from "../task-filter/task-filter";
 import AddNewItem from "../add-new-item/add-new-item";
 import SearchTask from "../search-task/search-task";
 
-export default class App extends Component {
-  state = {
-    tasks: [
-      this.createItem("Look at React", true),
-      this.createItem("Start to learning...", true),
-      this.createItem("Make first app", true),
-      this.createItem("Find a job", false),
-      this.createItem("Become a better everyday", false),
-    ],
-    buttons: [
-      { name: "all", label: "All", active: true },
-      { name: "active", label: "Active", active: false },
-      { name: "done", label: "Done", active: false },
-    ],
-    isHidden: false,
-    isActive: "",
-    search: "",
-    firstLoad: true,
-    theme: "dark",
+const App = () => {
+  const [tasks, setTasks] = useState([
+    { label: "Look at React", done: true },
+    { label: "Start to learning...", done: true },
+    { label: "Make first app", done: true },
+    { label: "Find a job", done: false },
+    { label: "Become a better everyday", done: false },
+  ]);
+  const [buttons, setButtons] = useState([
+    { name: "all", label: "All", active: true },
+    { name: "active", label: "Active", active: false },
+    { name: "done", label: "Done", active: false },
+  ]);
+  const [isHidden, setIsHidden] = useState(false);
+  const [isActive, setIsActive] = useState("");
+  const [search, setSearch] = useState("");
+  const [firstLoad, setFirstLoad] = useState(true);
+  const [theme, setTheme] = useState("dark");
+
+  const prepareToAddNewItem = () => {
+    setIsHidden(true);
   };
 
-  prepareToAddNewItem = () => {
-    this.setState({
-      isHidden: true,
-    });
+  const addNewItem = (label) => {
+    setIsHidden(false);
+    addNewTask(label);
   };
 
-  addNewItem = (label) => {
-    this.setState({
-      isHidden: false,
-    });
-    this.addNewTask(label);
-  };
+  const addNewTask = (label) => {
+    const newItem = createItem(label);
+    const newState = [...tasks];
 
-  addNewTask(label) {
-    const newItem = this.createItem(label);
-    const newState = [...this.state.tasks];
-
-    this.setState({
-      tasks: [...newState, newItem],
-    });
+    setTasks([...newState, newItem]);
 
     localStorage.setItem("tasks", JSON.stringify([...newState, newItem]));
-  }
+  };
 
-  createItem(label, done = false) {
+  const createItem = (label, done = false) => {
     return {
       label,
       done,
     };
-  }
+  };
 
-  loadItems() {
+  const loadItems = () => {
     const temp = JSON.parse(localStorage.getItem("tasks"));
     const newState = temp.map((e) => {
-      return this.createItem(e.label, e.done);
+      return createItem(e.label, e.done);
     });
-    this.setState({ tasks: [...newState] });
-  }
+    setTasks([...newState]);
+  };
 
-  makeDone = (e) => {
-    const newState = [...this.state.tasks];
+  const makeDone = (e) => {
+    const newState = [...tasks];
 
     newState.map((el) => {
       if (el.label === e.target.id) {
@@ -80,133 +72,113 @@ export default class App extends Component {
       return 0;
     });
 
-    this.setState({ tasks: [...newState] });
+    setTasks([...newState]);
     localStorage.setItem("tasks", JSON.stringify([...newState]));
   };
 
-  onFilterClick = (e) => {
-    const newState = [...this.state.buttons];
+  const onFilterClick = (e) => {
+    const newState = [...buttons];
 
     newState.map((el) => {
       if (el.name === e.target.name) {
-        this.setState({
-          isActive: el.name,
-        });
+        setIsActive(el.name);
         return (el.active = true);
       } else return (el.active = false);
     });
 
-    this.setState({ buttons: [...newState] });
+    setButtons([...newState]);
   };
 
-  onSearch = (e) => {
-    const newState = [...this.state.buttons];
-    const search =
+  const onSearch = (e) => {
+    const newState = [...buttons];
+    const tempSearch =
       e.target.name === "search"
         ? e.target.value
-        : this.state.search.slice(0, this.state.search.length - 1);
+        : search.slice(0, search.length - 1);
 
     newState.map((el) => {
       if (el.name === "all") {
-        this.setState({
-          isActive: el.name,
-        });
+        setIsActive(el.name);
         return (el.active = true);
       } else return (el.active = false);
     });
-
-    this.setState({ search, buttons: [...newState] });
+    setSearch(tempSearch);
+    setButtons([...newState]);
   };
 
-  onCancelPress = (e) => {
+  const onCancelPress = (e) => {
     switch (e.target.name) {
       case "search":
-        if (e.code === "Escape") this.setState({ search: "" });
+        if (e.code === "Escape") setSearch("");
         break;
       default:
-        if (e.code === "Escape") this.setState({ isHidden: false });
+        if (e.code === "Escape") setIsHidden(false);
         break;
     }
   };
 
-  onDelete = (e) => {
-    const newState = [...this.state.tasks].filter(
+  const onDelete = (e) => {
+    const newState = [...tasks].filter(
       (el) => el.label !== e.currentTarget.getAttribute("data-name")
     );
-
-    this.setState({
-      tasks: [...newState],
-    });
+    setTasks([...newState]);
 
     localStorage.setItem("tasks", JSON.stringify([...newState]));
   };
 
-  setupNewUser() {
+  const setupNewUser = () => {
     localStorage.getItem("tasks")
-      ? this.loadItems()
-      : localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
+      ? loadItems()
+      : localStorage.setItem("tasks", JSON.stringify(tasks));
+    setFirstLoad(false);
+  };
 
-    this.setState({
-      firstLoad: false,
-    });
-  }
-
-  toggleTheme = () => {
-    if (this.state.theme === "light") {
-      this.setState({
-        theme: "dark",
-      });
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
     } else {
-      this.setState({
-        theme: "light",
-      });
+      setTheme("light");
     }
   };
 
-  componentDidMount() {
-    if (this.state.firstLoad) {
-      this.setupNewUser();
+  useEffect(() => {
+    if (firstLoad) {
+      setupNewUser();
     }
-  }
+  }, []);
 
-  render() {
-    return (
-      <ThemeProvider
-        theme={this.state.theme === "light" ? lightTheme : darkTheme}
-      >
-        <GlobalStyles />
-        <div className="app">
-          <Header
-            need={this.state.tasks.filter((e) => e.done).length}
-            all={this.state.tasks.length}
-            toggleTheme={this.toggleTheme}
-            theme={this.state.theme}
-          />
-          <SearchTask
-            onSearch={this.onSearch}
-            search={this.state.search}
-            onCancelPress={this.onCancelPress}
-          />
-          <TaskFilter
-            onFilterClick={this.onFilterClick}
-            buttons={this.state.buttons}
-          />
-          <TodoList
-            tasks={this.state.tasks}
-            search={this.state.search}
-            makeDone={this.makeDone}
-            isActive={this.state.isActive}
-            onDelete={this.onDelete}
-          />
-          <AddNewItem
-            prepareToAddNewItem={this.prepareToAddNewItem}
-            addNewItem={this.addNewItem}
-            isHidden={this.state.isHidden}
-            isFocused={this.state.isFocused}
-            onCancelPress={this.onCancelPress}
-          />
-        </div>
-      </ThemeProvider>
-    );
-  }
-}
+  return (
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <div className="app">
+        <Header
+          need={tasks.filter((e) => e.done).length}
+          all={tasks.length}
+          toggleTheme={toggleTheme}
+          theme={theme}
+        />
+        <SearchTask
+          onSearch={onSearch}
+          search={search}
+          onCancelPress={onCancelPress}
+        />
+        <TaskFilter onFilterClick={onFilterClick} buttons={buttons} />
+        <TodoList
+          tasks={tasks}
+          search={search}
+          makeDone={makeDone}
+          isActive={isActive}
+          onDelete={onDelete}
+        />
+        <AddNewItem
+          prepareToAddNewItem={prepareToAddNewItem}
+          addNewItem={addNewItem}
+          isHidden={isHidden}
+          onCancelPress={onCancelPress}
+        />
+      </div>
+    </ThemeProvider>
+  );
+};
+
+export default App;
