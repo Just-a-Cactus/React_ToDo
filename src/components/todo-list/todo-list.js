@@ -1,6 +1,6 @@
 import TodoItem from "../todo-item/todo-item";
 
-const TodoList = ({ tasks, isActive, makeDone, search, onDelete }) => {
+const TodoList = ({ tasks, isActive, onTaskClick, search, onDeleteClick }) => {
   let key = 100;
   let tasksList = "";
 
@@ -13,9 +13,9 @@ const TodoList = ({ tasks, isActive, makeDone, search, onDelete }) => {
           label={item.label}
           className={className}
           key={key++}
-          makeDone={makeDone}
+          onTaskClick={onTaskClick}
           isDone={item.done}
-          onDelete={onDelete}
+          onDeleteClick={onDeleteClick}
         />
       );
     });
@@ -26,11 +26,7 @@ const TodoList = ({ tasks, isActive, makeDone, search, onDelete }) => {
   };
 
   if (search) {
-    tasksList = makeItem(
-      tasks.filter((el) => {
-        return filterElement(el);
-      })
-    );
+    tasksList = makeItem(tasks.filter((el) => filterElement(el)));
   } else {
     switch (isActive) {
       case "done":

@@ -1,50 +1,47 @@
-import { Component } from "react";
+import { useState } from "react";
 
-export default class AddNewItem extends Component {
-  state = {
-    newTask: "",
+const AddNewItem = ({
+  prepareToAddNewItem,
+  addNewItem,
+  isHidden,
+  onCancelPress,
+}) => {
+  const [newTask, setNewTask] = useState("");
+
+  const handleNewItemChange = (e) => {
+    setNewTask(e.target.value);
   };
 
-  onChange = (e) => {
-    this.setState({
-      newTask: e.target.value,
-    });
-  };
-
-  onCancelPress = (e) => {
-    if (e.code === "Escape") this.setState({ newTask: "" });
-    const { onCancelPress } = this.props;
+  const handleKeyPress = (e) => {
+    if (e.code === "Escape") setNewTask("");
     onCancelPress(e);
   };
 
-  render() {
-    const { prepareToAddNewItem, addNewItem, isHidden } = this.props;
 
     let className = "";
     className += isHidden ? " hidden" : "";
 
-    return (
-      <form
-        className="addNewItem"
-        onKeyDown={this.onCancelPress}
-        onSubmit={(e) => {
-          e.preventDefault();
-          addNewItem(this.state.newTask);
-          this.setState({
-            newTask: "",
-          });
-        }}
-      >
-        <label className={className} onClick={prepareToAddNewItem}>
-          + Add new item
-        </label>
-        <input
-          type="text"
-          placeholder="Add new item"
-          onChange={this.onChange}
-          value={this.state.newTask}
-        />
-      </form>
-    );
-  }
-}
+  return (
+    <form
+      className="addNewItem"
+      onKeyDown={onCancelPress}
+      onSubmit={(e) => {
+        e.preventDefault();
+        addNewItem(newTask);
+        setNewTask("");
+      }}
+    >
+      <label className={className} onClick={prepareToAddNewItem}>
+        + Add new item
+      </label>
+      <input
+        type="text"
+        placeholder="Add new item"
+        onChange={onChange}
+        value={newTask}
+      />
+    </form>
+  );
+};
+
+export default AddNewItem;
