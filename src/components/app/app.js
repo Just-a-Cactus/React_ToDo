@@ -177,8 +177,8 @@ export default class App extends Component {
         <GlobalStyles />
         <div className="app">
           <Header
-            need={this.state.tasks.filter((e) => e.done).length}
-            all={this.state.tasks.length}
+            amountFinishedTasks={this.state.tasks.filter((e) => e.done).length}
+            amountOfAllTasks={this.state.tasks.length}
             onToggleThemeClick={this.handleToggleThemeClick}
             theme={this.state.theme}
           />
