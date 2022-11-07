@@ -9,9 +9,9 @@ const TaskFilter = ({ onFilterClick, buttons }) => {
       name={button.name}
       key={key++}
       onFilterClick={onFilterClick}
-      clazz={button.active ? "FilterButton active" : "FilterButton"}
+      className={button.active ? "FilterButton active" : "FilterButton"}
     />
   ));
-  return <div className="TaskFilter">{buttonList}</div>;
+  return <div className="taskFilter">{buttonList}</div>;
 };
 export default TaskFilter;

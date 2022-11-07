@@ -1,5 +1,5 @@
-const TodoItem = ({ label, clazz, onTaskClick, isDone, onDeleteClick }) => (
-  <li className={clazz}>
+const TodoItem = ({ label, className, onTaskClick, isDone, onDeleteClick }) => (
+  <li className={className}>
     <span>
       <input type="checkbox" id={label} onChange={onTaskClick} checked={isDone} />
       <label htmlFor={label}>{label}</label>

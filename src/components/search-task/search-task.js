@@ -1,7 +1,7 @@
 const SearchTask = ({ onSearchChange, onCancelPress, search }) => {
   if (search) {
     return (
-      <div className="SearchTask">
+      <div className="searchTask">
         <input
           type="text"
           name="search"
@@ -26,9 +26,8 @@ const SearchTask = ({ onSearchChange, onCancelPress, search }) => {
     );
   } else {
     return (
-      <div className="SearchTask">
+      <div className="searchTask">
         <input
-          className="SearchTask"
           type="text"
           name="search"
           id="search"

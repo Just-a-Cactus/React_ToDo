@@ -6,12 +6,12 @@ const TodoList = ({ tasks, isActive, onTaskClick, search, onDeleteClick }) => {
 
   const makeItem = (arr) => {
     return arr.map((item) => {
-      let clazz = "TodoItem";
-      clazz += item.done ? " done" : "";
+      let className = "todoItem";
+      className += item.done ? " done" : "";
       return (
         <TodoItem
           label={item.label}
-          clazz={clazz}
+          className={className}
           key={key++}
           onTaskClick={onTaskClick}
           isDone={item.done}
@@ -40,7 +40,7 @@ const TodoList = ({ tasks, isActive, onTaskClick, search, onDeleteClick }) => {
         break;
     }
   }
-  return <ul className="TodoList">{tasksList}</ul>;
+  return <ul className="todoList">{tasksList}</ul>;
 };
 
 export default TodoList;

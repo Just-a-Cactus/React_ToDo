@@ -17,20 +17,21 @@ const AddNewItem = ({
     onCancelPress(e);
   };
 
-  let clazz = "";
-  clazz += isHidden ? " hidden" : "";
+
+    let className = "";
+    className += isHidden ? " hidden" : "";
 
   return (
     <form
-      className="AddNewItem"
-      onKeyDown={onPress}
+      className="addNewItem"
+      onKeyDown={onCancelPress}
       onSubmit={(e) => {
         e.preventDefault();
         addNewItem(newTask);
         setNewTask("");
       }}
     >
-      <label className={clazz} onClick={prepareToAddNewItem}>
+      <label className={className} onClick={prepareToAddNewItem}>
         + Add new item
       </label>
       <input
