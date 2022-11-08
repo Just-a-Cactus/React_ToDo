@@ -11,13 +11,7 @@ import AddNewItem from "../add-new-item/add-new-item";
 import SearchTask from "../search-task/search-task";
 
 const App = () => {
-  const [tasks, setTasks] = useState([
-    { label: "Look at React", done: true },
-    { label: "Start to learning...", done: true },
-    { label: "Make first app", done: true },
-    { label: "Find a job", done: false },
-    { label: "Become a better everyday", done: false },
-  ]);
+  const [tasks, setTasks] = useState([]);
   const [buttons, setButtons] = useState([
     { name: "all", label: "All", active: true },
     { name: "active", label: "Active", active: false },
