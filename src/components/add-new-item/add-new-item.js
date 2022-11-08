@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 
 const AddNewItem = ({
-  prepareToAddNewItem,
-  addNewItem,
+  onNewItemClick,
+  onNewItemAdd,
   isHidden,
   onCancelPress,
 }) => {
@@ -18,27 +18,26 @@ const AddNewItem = ({
     onCancelPress(e);
   };
 
-
-    let className = "";
-    className += isHidden ? " hidden" : "";
+  let className = "";
+  className += isHidden ? " hidden" : "";
 
   return (
     <form
       className="addNewItem"
-      onKeyDown={onCancelPress}
+      onKeyDown={handleKeyPress}
       onSubmit={(e) => {
         e.preventDefault();
-        addNewItem(newTask);
+        onNewItemAdd(newTask);
         setNewTask("");
       }}
     >
-      <label className={className} onClick={prepareToAddNewItem}>
+      <label className={className} onClick={onNewItemClick}>
         + Add new item
       </label>
       <input
         type="text"
         placeholder="Add new item"
-        onChange={onChange}
+        onChange={handleNewItemChange}
         value={newTask}
       />
     </form>

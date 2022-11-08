@@ -1,13 +1,7 @@
 import "./theme-switcher.css";
 import PropTypes from "prop-types";
 
-const ThemeSwitcher = ({ onToggleThemeClick, theme }) => {
-  ThemeSwitcher.propTypes = {
-    onToggleThemeClick: PropTypes.func,
-    theme: PropTypes.string,
-  };
-
-return (
+const ThemeSwitcher = ({ onToggleThemeClick, theme }) => (
   <div className={"themeSwitcher"}>
     <input
       type="checkbox"
@@ -39,5 +33,10 @@ return (
     </label>
   </div>
 );
+
+ThemeSwitcher.propTypes = {
+  onToggleThemeClick: PropTypes.func,
+  theme: PropTypes.string,
+};
 
 export default ThemeSwitcher;

@@ -52,7 +52,6 @@ const App = () => {
     };
   };
 
-
   const handleLocalstorageLoad = () => {
     const temp = JSON.parse(localStorage.getItem("tasks"));
     const newState = temp.map((e) => {
@@ -63,7 +62,6 @@ const App = () => {
 
   const handleTaskClick = (e) => {
     const newState = [...tasks];
-
 
     newState.map((el) => {
       if (el.label === e.target.id) {
@@ -92,7 +90,6 @@ const App = () => {
   const handleSearchChange = (e) => {
     const newState = [...buttons];
     const tempSearch =
-
       e.target.name === "search"
         ? e.target.value
         : search.slice(0, search.length - 1);
@@ -129,7 +126,7 @@ const App = () => {
 
   const handleNewUser = () => {
     localStorage.getItem("tasks")
-      ? loadItems()
+      ? handleLocalstorageLoad()
       : localStorage.setItem("tasks", JSON.stringify(tasks));
     setFirstLoad(false);
   };
@@ -144,7 +141,7 @@ const App = () => {
 
   useEffect(() => {
     if (firstLoad) {
-      setupNewUser();
+      handleNewUser();
     }
   }, []);
 
@@ -168,7 +165,7 @@ const App = () => {
           tasks={tasks}
           search={search}
           onTaskClick={handleTaskClick}
-          isActive={isActive}
+          filterStatus={isActive}
           onDeleteClick={handleDeleteClick}
         />
         <AddNewItem

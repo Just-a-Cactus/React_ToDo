@@ -1,15 +1,13 @@
 import TodoItem from "../todo-item/todo-item";
 import PropTypes from "prop-types";
 
-const TodoList = ({ tasks, filterStatus, onTaskClick, search, onDeleteClick }) => {
-  TodoList.propTypes = {
-    tasks: PropTypes.array,
-    filterStatus: PropTypes.string,
-    onTaskClick: PropTypes.func,
-    search: PropTypes.string,
-    onDeleteClick: PropTypes.func,
-  };
-
+const TodoList = ({
+  tasks,
+  filterStatus,
+  onTaskClick,
+  search,
+  onDeleteClick,
+}) => {
   let key = 100;
   let tasksList = "";
 
@@ -50,6 +48,14 @@ const TodoList = ({ tasks, filterStatus, onTaskClick, search, onDeleteClick }) =
     }
   }
   return <ul className="todoList">{tasksList}</ul>;
+};
+
+TodoList.propTypes = {
+  tasks: PropTypes.array,
+  filterStatus: PropTypes.string,
+  onTaskClick: PropTypes.func,
+  search: PropTypes.string,
+  onDeleteClick: PropTypes.func,
 };
 
 export default TodoList;
