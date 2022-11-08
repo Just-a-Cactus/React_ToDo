@@ -1,50 +1,54 @@
-import { Component } from "react";
+import PropTypes from "prop-types";
+import { useState } from "react";
 
-export default class AddNewItem extends Component {
-  state = {
-    newTask: "",
+const AddNewItem = ({
+  onNewItemClick,
+  onNewItemAdd,
+  isHidden,
+  onCancelPress,
+}) => {
+  const [newTask, setNewTask] = useState("");
+
+  const handleNewItemChange = (e) => {
+    setNewTask(e.target.value);
   };
 
-  onChange = (e) => {
-    this.setState({
-      newTask: e.target.value,
-    });
-  };
-
-  onCancelPress = (e) => {
-    if (e.code === "Escape") this.setState({ newTask: "" });
-    const { onCancelPress } = this.props;
+  const handleKeyPress = (e) => {
+    if (e.code === "Escape") setNewTask("");
     onCancelPress(e);
   };
 
-  render() {
-    const { prepareToAddNewItem, addNewItem, isHidden } = this.props;
+  let className = "";
+  className += isHidden ? " hidden" : "";
 
-    let clazz = "";
-    clazz += isHidden ? " hidden" : "";
+  return (
+    <form
+      className="addNewItem"
+      onKeyDown={handleKeyPress}
+      onSubmit={(e) => {
+        e.preventDefault();
+        onNewItemAdd(newTask);
+        setNewTask("");
+      }}
+    >
+      <label className={className} onClick={onNewItemClick}>
+        + Add new item
+      </label>
+      <input
+        type="text"
+        placeholder="Add new item"
+        onChange={handleNewItemChange}
+        value={newTask}
+      />
+    </form>
+  );
+};
 
-    return (
-      <form
-        className="AddNewItem"
-        onKeyDown={this.onCancelPress}
-        onSubmit={(e) => {
-          e.preventDefault();
-          addNewItem(this.state.newTask);
-          this.setState({
-            newTask: "",
-          });
-        }}
-      >
-        <label className={clazz} onClick={prepareToAddNewItem}>
-          + Add new item
-        </label>
-        <input
-          type="text"
-          placeholder="Add new item"
-          onChange={this.onChange}
-          value={this.state.newTask}
-        />
-      </form>
-    );
-  }
-}
+AddNewItem.propTypes = {
+  onCancelPress: PropTypes.func,
+  prepareToAddNewItem: PropTypes.func,
+  addNewItem: PropTypes.func,
+  isHidden: PropTypes.bool,
+};
+
+export default AddNewItem;
