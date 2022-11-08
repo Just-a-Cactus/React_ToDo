@@ -1,4 +1,4 @@
-import "./theme-switcher.css";
+import "./ThemeSwitcher.css";
 import PropTypes from "prop-types";
 
 const ThemeSwitcher = ({ onToggleThemeClick, theme }) => (

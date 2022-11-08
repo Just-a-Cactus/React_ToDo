@@ -1,4 +1,4 @@
-import FilterButton from "../filter-button/filter-button";
+import FilterButton from "../FilterButton/FilterButton";
 import PropTypes from "prop-types";
 
 const TaskFilter = ({ onFilterClick, buttons }) => {

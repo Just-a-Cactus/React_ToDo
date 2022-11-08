@@ -1,4 +1,4 @@
-import ThemeSwitcher from "../theme-switcher/theme-switcher";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import PropTypes from "prop-types";
 
 const Header = ({
