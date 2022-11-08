@@ -1,4 +1,4 @@
-import TodoItem from "../todo-item/todo-item";
+import TodoItem from "../TodoItem/TodoItem";
 import PropTypes from "prop-types";
 
 const TodoList = ({

@@ -4,11 +4,11 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../../themes/theme";
 import { GlobalStyles } from "../../themes/global";
 
-import Header from "../header/header";
-import TodoList from "../todo-list/todo-list";
-import TaskFilter from "../task-filter/task-filter";
-import AddNewItem from "../add-new-item/add-new-item";
-import SearchTask from "../search-task/search-task";
+import Header from "../Header/Header";
+import TodoList from "../TodoList/TodoList";
+import TaskFilter from "../TaskFilter/TaskFilter";
+import AddNewItem from "../AddNewItem/AddNewItem";
+import SearchTask from "../SearchTask/SearchTask";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
