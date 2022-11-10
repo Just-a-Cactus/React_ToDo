@@ -1,0 +1,42 @@
+.searchTask {
+  position: relative;
+}
+
+.deleteButton {
+  position: absolute;
+  right: 10px;
+  top: 6px;
+}
+
+@media (hover: hover) {
+  .deleteButton:hover {
+    cursor: pointer;
+    color: red;
+  }
+}
+
+.input {
+  width: 100%;
+  color: inherit;
+  border-radius: 10px;
+  border-color: transparent;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.inputDark:focus,
+.inputLight:focus {
+  outline: none;
+}
+
+.inputDark {
+  composes: input;
+  background-color: rgb(48, 49, 52);
+}
+.inputLight {
+  composes: input;
+  background-color: rgb(241, 243, 244);
+}

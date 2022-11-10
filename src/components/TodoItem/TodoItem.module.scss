@@ -1,0 +1,78 @@
+.todoItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid transparent;
+
+  :first-child {
+    flex-grow: 1;
+  }
+}
+
+.trash {
+}
+
+@media (hover: hover) {
+  .todoItem:hover {
+    border-bottom: 1px solid rgb(61, 64, 67);
+  }
+}
+
+.done {
+  color: rgb(151, 155, 160);
+  text-decoration: line-through;
+}
+
+@media (hover: hover) {
+  .trash:hover {
+    cursor: pointer;
+    color: red;
+  }
+}
+
+.checkbox {
+  display: none;
+
+  & + .labelDark,
+  & + .labelLight {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      display: block;
+      width: 16px;
+      height: 16px;
+      border: 1px solid rgb(151, 155, 160);
+      border-radius: 5px;
+      position: absolute;
+      left: 0;
+      top: 4px;
+      transition: all 0.12s, border-color 0.08s;
+    }
+  }
+
+  &:checked + .labelDark:before {
+    width: 5px;
+    top: 0;
+    left: 7px;
+    border-radius: 0;
+    border-color: rgb(232, 234, 237);
+    border-top-color: transparent;
+    border-left-color: transparent;
+    transform: rotate(45deg);
+  }
+
+  &:checked + .labelLight:before {
+    width: 5px;
+    top: 0;
+    left: 7px;
+    border-radius: 0;
+    border-color: rgb(61, 64, 67);
+    border-top-color: transparent;
+    border-left-color: transparent;
+    transform: rotate(45deg);
+  }
+}

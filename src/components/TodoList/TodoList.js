@@ -1,5 +1,6 @@
 import TodoItem from "../TodoItem/TodoItem";
 import PropTypes from "prop-types";
+import styles from "./TodoList.module.css";
 
 const TodoList = ({
   tasks,
@@ -7,22 +8,22 @@ const TodoList = ({
   onTaskClick,
   search,
   onDeleteClick,
+  theme,
 }) => {
   let key = 100;
-  let tasksList = "";
+  let tasksList;
 
   const makeItem = (arr) => {
     return arr.map((item) => {
-      let className = "todoItem";
-      className += item.done ? " done" : "";
       return (
         <TodoItem
           label={item.label}
-          className={className}
+          isItemDone={item.done}
           key={key++}
           onTaskClick={onTaskClick}
           isDone={item.done}
           onDeleteClick={onDeleteClick}
+          theme={theme}
         />
       );
     });
@@ -47,7 +48,7 @@ const TodoList = ({
         break;
     }
   }
-  return <ul className="todoList">{tasksList}</ul>;
+  return <ul className={styles.todoList}>{tasksList}</ul>;
 };
 
 TodoList.propTypes = {

@@ -1,0 +1,7 @@
+.taskFilter {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px rgb(61, 64, 67);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}

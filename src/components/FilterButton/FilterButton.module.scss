@@ -1,0 +1,42 @@
+.filterButton {
+  border-radius: 10px;
+  border-color: transparent;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.filterButton + .filterButton {
+  margin-left: 10px;
+}
+
+.dark {
+  composes: filterButton;
+  background-color: rgb(48, 49, 52);
+  color: rgb(232, 234, 237);
+}
+
+.light {
+  composes: filterButton;
+  background-color: rgb(241, 243, 244);
+  color: rgb(61, 64, 67);
+}
+
+.dark:hover {
+  background-color: rgb(241, 243, 244);
+  color: rgb(61, 64, 67);
+}
+
+.light:hover {
+  background-color: rgb(48, 49, 52);
+  color: rgb(232, 234, 237);
+}
+
+.darkActive {
+  background-color: rgb(232, 234, 237);
+  color: rgb(48, 49, 52);
+}
+
+.lightActive {
+  background-color: rgb(61, 64, 67);
+  color: rgb(241, 243, 244);
+}

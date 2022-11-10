@@ -1,7 +1,8 @@
 import FilterButton from "../FilterButton/FilterButton";
 import PropTypes from "prop-types";
+import styles from "./TaskFilter.module.css";
 
-const TaskFilter = ({ onFilterClick, buttons }) => {
+const TaskFilter = ({ onFilterClick, buttons, theme }) => {
   let key = 1;
 
   const buttonList = buttons.map((button) => (
@@ -10,10 +11,11 @@ const TaskFilter = ({ onFilterClick, buttons }) => {
       name={button.name}
       key={key++}
       onFilterClick={onFilterClick}
-      className={button.active ? "filterButton active" : "filterButton"}
+      isButtonActive={button.active}
+      theme={theme}
     />
   ));
-  return <div className="taskFilter">{buttonList}</div>;
+  return <div className={styles.taskFilter}>{buttonList}</div>;
 };
 
 TaskFilter.propTypes = {

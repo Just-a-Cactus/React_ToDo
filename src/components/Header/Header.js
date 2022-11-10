@@ -1,5 +1,6 @@
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import PropTypes from "prop-types";
+import styles from "./Header.module.css";
 
 const Header = ({
   amountFinishedTasks,
@@ -7,10 +8,10 @@ const Header = ({
   onToggleThemeClick,
   theme,
 }) => (
-  <header className="header">
+  <header className={styles.header}>
     <ThemeSwitcher onToggleThemeClick={onToggleThemeClick} theme={theme} />
-    <h1>Things to do</h1>
-    <span>
+    <h1 className={styles.title}>Things to do</h1>
+    <span className={styles.subtitle}>
       {amountFinishedTasks} from {amountOfAllTasks} done
     </span>
   </header>

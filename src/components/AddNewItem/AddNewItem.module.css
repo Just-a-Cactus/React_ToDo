@@ -1,0 +1,49 @@
+.addNewItemForm {
+}
+
+.hiddenLabel ~ .inputDark,
+.hiddenLabel ~ .inputLight {
+  display: block;
+}
+
+.input {
+  display: none;
+  width: 100%;
+  color: inherit;
+  border-radius: 10px;
+  border-color: transparent;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.inputDark {
+  composes: input;
+  background-color: rgb(48, 49, 52);
+}
+
+.inputLight {
+  composes: input;
+  background-color: rgb(241, 243, 244);
+}
+.inputDark:focus,
+.inputLight:focus {
+  outline: none;
+}
+
+.label {
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  color: rgb(151, 155, 160);
+}
+
+.label:hover {
+  color: inherit;
+  cursor: pointer;
+}
+
+.hiddenLabel {
+  composes: label;
+  display: none;
+}

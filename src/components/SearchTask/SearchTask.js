@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
+import styles from "./SearchTask.module.css";
 
-const SearchTask = ({ onSearchChange, onCancelPress, search }) => {
+const SearchTask = ({ onSearchChange, onCancelPress, search, theme }) => {
   if (search) {
     return (
-      <div className="searchTask">
+      <div className={styles.searchTask}>
         <input
           type="text"
           name="search"
@@ -12,13 +13,14 @@ const SearchTask = ({ onSearchChange, onCancelPress, search }) => {
           onKeyDown={onCancelPress}
           onChange={onSearchChange}
           value={search}
+          className={theme === "dark" ? styles.inputDark : styles.inputLight}
         />
         <svg
           width="16"
           height="16"
           fill="currentColor"
           viewBox="0 0 16 16"
-          className={"deleteButton"}
+          className={styles.deleteButton}
           onClick={onSearchChange}
         >
           <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z" />
@@ -28,7 +30,7 @@ const SearchTask = ({ onSearchChange, onCancelPress, search }) => {
     );
   } else {
     return (
-      <div className="searchTask">
+      <div className={styles.searchTask}>
         <input
           type="text"
           name="search"
@@ -37,6 +39,7 @@ const SearchTask = ({ onSearchChange, onCancelPress, search }) => {
           onKeyDown={onCancelPress}
           onChange={onSearchChange}
           value={search}
+          className={theme === "dark" ? styles.inputDark : styles.inputLight}
         />
       </div>
     );

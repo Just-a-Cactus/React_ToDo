@@ -9,6 +9,7 @@ import TodoList from "../TodoList/TodoList";
 import TaskFilter from "../TaskFilter/TaskFilter";
 import AddNewItem from "../AddNewItem/AddNewItem";
 import SearchTask from "../SearchTask/SearchTask";
+import styles from "./App.module.css";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -140,9 +141,9 @@ const App = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyles />
-      <div className="app">
+      <div className={theme === "dark" ? styles.appDark : styles.appLight}>
         <Header
           amountFinishedTasks={tasks.filter((e) => e.done).length}
           amountOfAllTasks={tasks.length}
@@ -153,16 +154,23 @@ const App = () => {
           onSearchChange={handleSearchChange}
           search={search}
           onCancelPress={handleCancelPress}
+          theme={theme}
         />
-        <TaskFilter onFilterClick={handleFilterClick} buttons={buttons} />
+        <TaskFilter
+          onFilterClick={handleFilterClick}
+          theme={theme}
+          buttons={buttons}
+        />
         <TodoList
           tasks={tasks}
           search={search}
           onTaskClick={handleTaskClick}
           filterStatus={isActive}
           onDeleteClick={handleDeleteClick}
+          theme={theme}
         />
         <AddNewItem
+          theme={theme}
           onNewItemClick={handleNewItemClick}
           onNewItemAdd={handleNewItemAdd}
           isHidden={isHidden}

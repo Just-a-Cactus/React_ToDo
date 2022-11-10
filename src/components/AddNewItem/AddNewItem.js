@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import styles from "./AddNewItem.module.css";
 
 const AddNewItem = ({
   onNewItemClick,
   onNewItemAdd,
   isHidden,
   onCancelPress,
+  theme,
 }) => {
   const [newTask, setNewTask] = useState("");
 
@@ -18,12 +20,9 @@ const AddNewItem = ({
     onCancelPress(e);
   };
 
-  let className = "";
-  className += isHidden ? " hidden" : "";
-
   return (
     <form
-      className="addNewItem"
+      className={styles.addNewItemForm}
       onKeyDown={handleKeyPress}
       onSubmit={(e) => {
         e.preventDefault();
@@ -31,10 +30,14 @@ const AddNewItem = ({
         setNewTask("");
       }}
     >
-      <label className={className} onClick={onNewItemClick}>
+      <label
+        className={isHidden ? styles.hiddenLabel : styles.label}
+        onClick={onNewItemClick}
+      >
         + Add new item
       </label>
       <input
+        className={theme === "dark" ? styles.inputDark : styles.inputLight}
         type="text"
         placeholder="Add new item"
         onChange={handleNewItemChange}
