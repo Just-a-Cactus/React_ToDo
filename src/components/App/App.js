@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-
-import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "../../themes/theme";
-import { GlobalStyles } from "../../themes/global";
+import styled, { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "../../themes/theme";
+import GlobalStyles from "../../themes/global";
 
 import Header from "../Header/Header";
 import TodoList from "../TodoList/TodoList";
@@ -21,7 +20,7 @@ const App = () => {
   const [isActive, setIsActive] = useState("");
   const [search, setSearch] = useState("");
   const [firstLoad, setFirstLoad] = useState(true);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(darkTheme);
 
   const handleNewItemClick = () => {
     setIsHidden(true);
@@ -126,10 +125,10 @@ const App = () => {
   };
 
   const handleToggleThemeClick = () => {
-    if (theme === "light") {
-      setTheme("dark");
+    if (theme === lightTheme) {
+      setTheme(darkTheme);
     } else {
-      setTheme("light");
+      setTheme(lightTheme);
     }
   };
 
@@ -140,14 +139,14 @@ const App = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme} test={theme}>
       <GlobalStyles />
-      <div className="app">
+      <AppWrapper>
         <Header
           amountFinishedTasks={tasks.filter((e) => e.done).length}
           amountOfAllTasks={tasks.length}
           onToggleThemeClick={handleToggleThemeClick}
-          theme={theme}
+          isChecked={theme === lightTheme}
         />
         <SearchTask
           onSearchChange={handleSearchChange}
@@ -168,9 +167,21 @@ const App = () => {
           isHidden={isHidden}
           onCancelPress={handleCancelPress}
         />
-      </div>
+      </AppWrapper>
     </ThemeProvider>
   );
 };
 
 export default App;
+
+const AppWrapper = styled.div`
+  background-color: ${({ theme }) => theme.appColor};
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 400px;
+  margin: 20vh auto;
+  color: ${({ theme }) => theme.color};
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.034), 0 7px 5px rgba(0, 0, 0, 0.048),
+    0 13px 10px rgba(0, 0, 0, 0.06), 0 22px 18px rgba(0, 0, 0, 0.072),
+    0 42px 33px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+`;

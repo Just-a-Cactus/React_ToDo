@@ -1,5 +1,6 @@
 import TodoItem from "../TodoItem/TodoItem";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const TodoList = ({
   tasks,
@@ -9,24 +10,18 @@ const TodoList = ({
   onDeleteClick,
 }) => {
   let key = 100;
-  let tasksList = "";
+  let tasksList;
 
-  const makeItem = (arr) => {
-    return arr.map((item) => {
-      let className = "todoItem";
-      className += item.done ? " done" : "";
-      return (
-        <TodoItem
-          label={item.label}
-          className={className}
-          key={key++}
-          onTaskClick={onTaskClick}
-          isDone={item.done}
-          onDeleteClick={onDeleteClick}
-        />
-      );
-    });
-  };
+  const makeItem = (arr) =>
+    arr.map((item) => (
+      <TodoItem
+        label={item.label}
+        key={key++}
+        onTaskClick={onTaskClick}
+        isDone={item.done}
+        onDeleteClick={onDeleteClick}
+      />
+    ));
 
   const filterElement = (el) => {
     if (el.label.toLowerCase().indexOf(search.toLowerCase()) > -1) return el;
@@ -47,7 +42,7 @@ const TodoList = ({
         break;
     }
   }
-  return <ul className="todoList">{tasksList}</ul>;
+  return <TodoListWrapper>{tasksList}</TodoListWrapper>;
 };
 
 TodoList.propTypes = {
@@ -59,3 +54,9 @@ TodoList.propTypes = {
 };
 
 export default TodoList;
+
+const TodoListWrapper = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
