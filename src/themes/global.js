@@ -11,6 +11,7 @@ const GlobalStyles = createGlobalStyle`
       line-height: 1.4;
       font-size: 20px;
       transition: all 0.25s linear;
+      position: relative;
     }
     
     ::selection {
