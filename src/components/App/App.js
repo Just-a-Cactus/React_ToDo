@@ -42,10 +42,11 @@ const App = () => {
     localStorage.setItem("tasks", JSON.stringify([...newState, newItem]));
   };
 
-  const createNewItem = (label, done = false) => {
+  const createNewItem = (label, done = false, isEdit = false) => {
     return {
       label,
       done,
+      isEdit,
     };
   };
 
@@ -111,6 +112,30 @@ const App = () => {
         if (e.code === "Escape") setIsHidden(false);
         break;
     }
+  };
+
+  const handleEditClick = (e) => {
+    const newState = tasks.map((el) => {
+      if (el.label === e.currentTarget.getAttribute("data-name"))
+        el.isEdit = true;
+      return el;
+    });
+
+    setTasks([...newState]);
+  };
+
+  const handleSaveClick = (oldLabel, newLabel) => {
+    const newState = tasks.map((el) => {
+      if (el.label === oldLabel) {
+        el.isEdit = false;
+        el.label = newLabel;
+      }
+
+      return el;
+    });
+
+    setTasks([...newState]);
+    localStorage.setItem("tasks", JSON.stringify([...newState]));
   };
 
   const handleDeleteClick = (e) => {
@@ -184,6 +209,8 @@ const App = () => {
           onTaskClick={handleTaskClick}
           filterStatus={isActive}
           onDeleteClick={handleDeleteClick}
+          onEditClick={handleEditClick}
+          onSaveClick={handleSaveClick}
         />
         <AddNewItem
           onNewItemClick={handleNewItemClick}

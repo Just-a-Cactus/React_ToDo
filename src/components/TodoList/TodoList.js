@@ -8,6 +8,8 @@ const TodoList = ({
   onTaskClick,
   search,
   onDeleteClick,
+  onEditClick,
+  onSaveClick,
 }) => {
   let key = 100;
   let tasksList;
@@ -19,7 +21,10 @@ const TodoList = ({
         key={key++}
         onTaskClick={onTaskClick}
         isDone={item.done}
+        isEdit={item.isEdit}
         onDeleteClick={onDeleteClick}
+        onEditClick={onEditClick}
+        onSaveClick={onSaveClick}
       />
     ));
 
