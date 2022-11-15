@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import styled from "styled-components";
 
 const AddNewItem = ({
   onNewItemClick,
@@ -18,12 +19,8 @@ const AddNewItem = ({
     onCancelPress(e);
   };
 
-  let className = "";
-  className += isHidden ? " hidden" : "";
-
   return (
-    <form
-      className="addNewItem"
+    <AddNewItemWrapper
       onKeyDown={handleKeyPress}
       onSubmit={(e) => {
         e.preventDefault();
@@ -31,7 +28,7 @@ const AddNewItem = ({
         setNewTask("");
       }}
     >
-      <label className={className} onClick={onNewItemClick}>
+      <label className={isHidden ? "hidden" : null} onClick={onNewItemClick}>
         + Add new item
       </label>
       <input
@@ -40,7 +37,7 @@ const AddNewItem = ({
         onChange={handleNewItemChange}
         value={newTask}
       />
-    </form>
+    </AddNewItemWrapper>
   );
 };
 
@@ -52,3 +49,41 @@ AddNewItem.propTypes = {
 };
 
 export default AddNewItem;
+
+const AddNewItemWrapper = styled.form`
+  label.hidden ~ input {
+    display: block;
+  }
+
+  label.hidden {
+    display: none;
+  }
+
+  input {
+    display: none;
+    width: 100%;
+    background-color: ${({ theme }) => theme.inputColor};
+    color: inherit;
+    border-radius: 10px;
+    border-color: transparent;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 18px;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  label {
+    font-size: 18px;
+    color: ${({ theme }) => theme.inputTextColor};
+    display: flex;
+    justify-content: center;
+  }
+
+  label:hover {
+    color: inherit;
+    cursor: pointer;
+  }
+`;
