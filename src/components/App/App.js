@@ -8,6 +8,8 @@ import TodoList from "../TodoList/TodoList";
 import TaskFilter from "../TaskFilter/TaskFilter";
 import AddNewItem from "../AddNewItem/AddNewItem";
 import SearchTask from "../SearchTask/SearchTask";
+import AskNameModal from "../AskNameModal/AskNameModal";
+import WelcomeMessage from "../WelcomeMessage/WelcomeMessage";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -21,6 +23,8 @@ const App = () => {
   const [search, setSearch] = useState("");
   const [firstLoad, setFirstLoad] = useState(true);
   const [theme, setTheme] = useState(darkTheme);
+  const [username, setUsername] = useState(null);
+  const [isShowWelcomeMessage, toggleShowWelcomeMessage] = useState(true);
 
   const handleNewItemClick = () => {
     setIsHidden(true);
@@ -45,12 +49,13 @@ const App = () => {
     };
   };
 
-  const handleLocalstorageLoad = () => {
+  const handleLocalStorageLoad = () => {
     const temp = JSON.parse(localStorage.getItem("tasks"));
     const newState = temp.map((e) => {
       return createNewItem(e.label, e.done);
     });
     setTasks([...newState]);
+    setUsername(localStorage.getItem("username"));
   };
 
   const handleTaskClick = (e) => {
@@ -118,10 +123,13 @@ const App = () => {
   };
 
   const handleNewUser = () => {
-    localStorage.getItem("tasks")
-      ? handleLocalstorageLoad()
-      : localStorage.setItem("tasks", JSON.stringify(tasks));
-    setFirstLoad(false);
+    if (localStorage.getItem("username")) {
+      handleLocalStorageLoad();
+      setFirstLoad(false);
+      setTimeout(() => {
+        toggleShowWelcomeMessage(false);
+      }, 10000);
+    }
   };
 
   const handleToggleThemeClick = () => {
@@ -138,9 +146,25 @@ const App = () => {
     }
   }, []);
 
-  return (
-    <ThemeProvider theme={theme} test={theme}>
-      <GlobalStyles />
+  const handleAskModalSubmit = (username) => {
+    setUsername(username);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("username", username);
+    setFirstLoad(false);
+    setTimeout(() => {
+      toggleShowWelcomeMessage(false);
+    }, 10000);
+  };
+
+  const welcomeMessageToggle = isShowWelcomeMessage ? (
+    <WelcomeMessage username={username} />
+  ) : null;
+
+  const onScreen = firstLoad ? (
+    <AskNameModal onAskModalSubmit={handleAskModalSubmit} />
+  ) : (
+    <>
+      {welcomeMessageToggle}
       <AppWrapper>
         <Header
           amountFinishedTasks={tasks.filter((e) => e.done).length}
@@ -168,13 +192,20 @@ const App = () => {
           onCancelPress={handleCancelPress}
         />
       </AppWrapper>
+    </>
+  );
+
+  return (
+    <ThemeProvider theme={theme} test={theme}>
+      <GlobalStyles />
+      {onScreen}
     </ThemeProvider>
   );
 };
 
 export default App;
 
-const AppWrapper = styled.div`
+export const AppWrapper = styled.div`
   background-color: ${({ theme }) => theme.appColor};
   border-radius: 10px;
   padding: 30px;
