@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
-const WelcomeMessage = ({ username }) => {
-  return (
-    <WelcomeMessageWrapper>You are welcome, {username}!</WelcomeMessageWrapper>
-  );
+const Notification = ({ children, ...props }) => {
+  return <StyledNotification {...props}>{children}</StyledNotification>;
 };
 
-export default WelcomeMessage;
+export default Notification;
 
-const WelcomeMessageWrapper = styled.div`
+const StyledNotification = styled.div`
   background-color: ${({ theme }) => theme.appColor};
   position: absolute;
   top: -50px;

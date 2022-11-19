@@ -1,6 +1,7 @@
-import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
+import ThemeSwitcher from "../molecules/ThemeSwitcher";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Text from "../atoms/Text";
 
 const Header = ({
   amountFinishedTasks,
@@ -8,16 +9,16 @@ const Header = ({
   onToggleThemeClick,
   isChecked,
 }) => (
-  <HeaderWrapper>
+  <StyledHeader>
     <ThemeSwitcher
       onToggleThemeClick={onToggleThemeClick}
       checked={isChecked}
     />
-    <h1>Things to do</h1>
-    <span>
+    <Text tag={"h1"}>Things to do</Text>
+    <Text tag={"span"}>
       {amountFinishedTasks} from {amountOfAllTasks} done
-    </span>
-  </HeaderWrapper>
+    </Text>
+  </StyledHeader>
 );
 
 Header.propTypes = {
@@ -29,16 +30,7 @@ Header.propTypes = {
 
 export default Header;
 
-const HeaderWrapper = styled.form`
+const StyledHeader = styled.form`
   text-align: center;
   padding-bottom: 10px;
-
-  h1 {
-    margin: 0 0 5px 0;
-    font-size: 36px;
-  }
-
-  span {
-    color: ${({ theme }) => theme.inputTextColor};
-  }
 `;
