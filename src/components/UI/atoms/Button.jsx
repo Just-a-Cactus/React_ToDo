@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Button = ({ children, ...props }) => {
   return <StyledButton {...props}>{children}</StyledButton>;
@@ -33,3 +34,7 @@ const StyledButton = styled.button`
     }
   }
 `;
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+};

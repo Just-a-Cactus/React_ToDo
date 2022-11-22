@@ -6,14 +6,12 @@ import Text from "../atoms/Text";
 const Header = ({
   amountFinishedTasks,
   amountOfAllTasks,
-  onToggleThemeClick,
   isChecked,
+  theme,
+  setTheme,
 }) => (
   <StyledHeader>
-    <ThemeSwitcher
-      onToggleThemeClick={onToggleThemeClick}
-      checked={isChecked}
-    />
+    <ThemeSwitcher theme={theme} setTheme={setTheme} checked={isChecked} />
     <Text tag={"h1"}>Things to do</Text>
     <Text tag={"span"}>
       {amountFinishedTasks} from {amountOfAllTasks} done
@@ -24,8 +22,9 @@ const Header = ({
 Header.propTypes = {
   amountFinishedTasks: PropTypes.number,
   amountOfAllTasks: PropTypes.number,
-  onToggleThemeClick: PropTypes.func,
   isChecked: PropTypes.bool,
+  theme: PropTypes.object,
+  setTheme: PropTypes.func,
 };
 
 export default Header;

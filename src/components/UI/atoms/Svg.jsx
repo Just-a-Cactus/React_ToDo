@@ -37,9 +37,8 @@ const Svg = ({ icon, ...props }) => {
 
 export default Svg;
 
-Text.propTypes = {
-  tag: PropTypes.string,
-  children: PropTypes.node.isRequired,
+Svg.propTypes = {
+  icon: PropTypes.string.isRequired,
 };
 
 const Icon = styled.svg`

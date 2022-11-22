@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Input = ({ type, ...props }) => {
   switch (type) {
@@ -35,3 +36,7 @@ const StyledInputText = styled.input`
 const StyledInputCheckbox = styled.input`
   display: ${(props) => props.display ?? "inherit"};
 `;
+
+Input.propTypes = {
+  type: PropTypes.string.isRequired,
+};

@@ -1,9 +1,9 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
-const Notification = ({ children, ...props }) => {
-  return <StyledNotification {...props}>{children}</StyledNotification>;
-};
-
+const Notification = ({ children, ...props }) => (
+  <StyledNotification {...props}>{children}</StyledNotification>
+);
 export default Notification;
 
 const StyledNotification = styled.div`
@@ -23,3 +23,7 @@ const StyledNotification = styled.div`
     0 13px 10px rgba(0, 0, 0, 0.06), 0 22px 18px rgba(0, 0, 0, 0.072),
     0 42px 33px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
 `;
+
+Notification.propTypes = {
+  children: PropTypes.node.isRequired,
+};
