@@ -3,10 +3,10 @@ import styled from "styled-components";
 
 import { lightTheme } from "../../themes/theme";
 
-import AddNewItem from "../UI/molecules/AddNewItem";
+import AddNewItem from "../UI/organisms/AddNewItem";
 import Filter from "../UI/molecules/Filter";
 import Search from "../UI/molecules/Search";
-import TaskList from "../UI/molecules/TaskList";
+import TaskList from "../UI/organisms/TaskList";
 import Header from "../UI/organisms/Header";
 import Notification from "../UI/atoms/Notification";
 import PropTypes from "prop-types";

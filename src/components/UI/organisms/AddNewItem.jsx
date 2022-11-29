@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import Form from "./Form";
+import Form from "../molecules/Form";
 
 const AddNewItem = ({ createNewItem, tasks, setTasks }) => {
   const [newTask, setNewTask] = useState(undefined);

@@ -5,55 +5,22 @@ import Input from "../atoms/Input";
 import Svg from "../atoms/Svg";
 import { useEffect, useState } from "react";
 
-const TaskItem = ({ labelText, isDone, isEdit, tasks, setTasks }) => {
+const TaskItem = ({
+  labelText,
+  isDone,
+  isEdit,
+  onSaveClick,
+  onDeleteClick,
+  onTaskClick,
+  onEditClick,
+}) => {
   const [temp, setTemp] = useState("");
-
-  const handleTaskClick = (e) => {
-    const newState = [...tasks];
-    newState.map((el) => {
-      if (el.label === e.target.id) {
-        return (el.done = !el.done);
-      }
-      return 0;
-    });
-    setTasks([...newState]);
-    localStorage.setItem("tasks", JSON.stringify([...newState]));
-  };
-
-  const handleEditClick = (e) => {
-    const newState = tasks.map((el) => {
-      if (el.label === e.currentTarget.getAttribute("data-name"))
-        el.isEdit = true;
-      return el;
-    });
-    setTasks([...newState]);
-  };
-
-  const handleSaveClick = (oldLabel, newLabel) => {
-    const newState = tasks.map((el) => {
-      if (el.label === oldLabel) {
-        el.isEdit = false;
-        el.label = newLabel;
-      }
-      return el;
-    });
-    setTasks([...newState]);
-    localStorage.setItem("tasks", JSON.stringify([...newState]));
-  };
 
   const handleCancelEdit = (e) => {
     if (e.code === "Escape") {
       setTemp("");
-      handleSaveClick(labelText, labelText);
+      onSaveClick(labelText, labelText);
     }
-  };
-
-  const handleDeleteClick = (e) => {
-    const newState = [...tasks].filter(
-      (el) => el.label !== e.currentTarget.getAttribute("data-name")
-    );
-    setTasks([...newState]);
-    localStorage.setItem("tasks", JSON.stringify([...newState]));
   };
 
   const itemShow = (
@@ -62,7 +29,7 @@ const TaskItem = ({ labelText, isDone, isEdit, tasks, setTasks }) => {
         <Input
           type="checkbox"
           id={labelText}
-          onChange={handleTaskClick}
+          onChange={onTaskClick}
           checked={isDone}
           display={"none"}
         />
@@ -78,8 +45,8 @@ const TaskItem = ({ labelText, isDone, isEdit, tasks, setTasks }) => {
           {labelText}
         </Text>
       </span>
-      <Svg icon={"edit"} onClick={handleEditClick} data-name={labelText} />
-      <Svg icon={"trash"} onClick={handleDeleteClick} data-name={labelText} />
+      <Svg icon={"edit"} onClick={onEditClick} data-name={labelText} />
+      <Svg icon={"trash"} onClick={onDeleteClick} data-name={labelText} />
     </>
   );
 
@@ -96,7 +63,7 @@ const TaskItem = ({ labelText, isDone, isEdit, tasks, setTasks }) => {
       <Svg
         icon={"done"}
         onClick={() =>
-          handleSaveClick(labelText, document.getElementById(labelText).value)
+          onSaveClick(labelText, document.getElementById(labelText).value)
         }
       />
     </>
@@ -111,7 +78,7 @@ const TaskItem = ({ labelText, isDone, isEdit, tasks, setTasks }) => {
       <StyledTaskItem
         onSubmit={(e) => {
           e.preventDefault();
-          handleSaveClick(labelText, e.target[labelText].value);
+          onSaveClick(labelText, e.target[labelText].value);
         }}
       >
         {isEdit ? itemEdit : itemShow}
