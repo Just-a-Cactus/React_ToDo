@@ -1,33 +1,44 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { darkTheme, lightTheme } from "../../../themes/theme";
 
-const ThemeSwitcher = ({ onToggleThemeClick, checked }) => (
-  <ThemeSwitcherWrapper>
-    <input type="checkbox" checked={checked} readOnly />
-    <label htmlFor="day-night" onClick={onToggleThemeClick}>
-      <div className="celestial sun"></div>
-      <div className="celestial moon">
-        <div className="craters">
-          <div className="crater"></div>
-          <div className="crater"></div>
-          <div className="crater"></div>
-          <div className="crater"></div>
-          <div className="crater"></div>
+const ThemeSwitcher = ({ checked, theme, setTheme }) => {
+  const handleToggleThemeClick = () => {
+    if (theme === lightTheme) {
+      setTheme(darkTheme);
+    } else {
+      setTheme(lightTheme);
+    }
+  };
+
+  return (
+    <ThemeSwitcherWrapper>
+      <input type="checkbox" checked={checked} readOnly />
+      <label htmlFor="day-night" onClick={handleToggleThemeClick}>
+        <div className="celestial sun"></div>
+        <div className="celestial moon">
+          <div className="craters">
+            <div className="crater"></div>
+            <div className="crater"></div>
+            <div className="crater"></div>
+            <div className="crater"></div>
+            <div className="crater"></div>
+          </div>
         </div>
-      </div>
-      <div className="decorations">
-        <div className="decoration"></div>
-        <div className="decoration"></div>
-        <div className="decoration"></div>
-        <div className="decoration"></div>
-      </div>
-      <div className="mountains">
-        <div></div>
-        <div></div>
-      </div>
-    </label>
-  </ThemeSwitcherWrapper>
-);
+        <div className="decorations">
+          <div className="decoration"></div>
+          <div className="decoration"></div>
+          <div className="decoration"></div>
+          <div className="decoration"></div>
+        </div>
+        <div className="mountains">
+          <div></div>
+          <div></div>
+        </div>
+      </label>
+    </ThemeSwitcherWrapper>
+  );
+};
 
 ThemeSwitcher.propTypes = {
   onToggleThemeClick: PropTypes.func,
