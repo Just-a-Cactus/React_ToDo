@@ -6,6 +6,7 @@ export const lightTheme = {
   accentColor: "red",
   borderColor: "rgb(61, 64, 67)",
   appColor: "rgb(255, 255, 255)",
+  editColor: "rgb(15, 255, 80)",
 };
 
 export const darkTheme = {
@@ -16,4 +17,5 @@ export const darkTheme = {
   accentColor: "red",
   borderColor: "rgb(61, 64, 67)",
   appColor: "rgb(32, 33, 36)",
+  editColor: "rgb(15, 255, 80)",
 };
